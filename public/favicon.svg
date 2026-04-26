@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Now City Neighborhoods favicon
+       Letterform "n." in serif on Forest Green.
+       Echoes the deck headlines (declarative noun phrases ending with a period).
+  -->
+  <rect width="32" height="32" rx="5" fill="#1F3A34"/>
+  <text
+    x="16"
+    y="23"
+    font-family="'Playfair Display', 'Canela', 'Libre Baskerville', Georgia, serif"
+    font-size="22"
+    font-weight="500"
+    fill="#F6F4EE"
+    text-anchor="middle">n.</text>
+</svg>

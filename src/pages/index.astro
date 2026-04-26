@@ -405,6 +405,47 @@ const description =
             </div>
           </fieldset>
 
+          {/*
+            Housing-type question, revealed only when "Future resident" is
+            selected. CSS-only via :has() (no JS required).
+            For Mailchimp: map each checkbox to a Group (Mailchimp's term for
+            audience tags) — gives clean rent/own + form-factor segmentation.
+            Field names below are placeholders; rename to match the
+            group[ID][SUBID] format Mailchimp generates.
+          */}
+          <fieldset class="housing-question">
+            <legend class="block text-sm font-medium text-forest-800">
+              If a home opened up, what would catch your eye?
+            </legend>
+            <p class="mt-1 text-xs text-stone-500">Optional — pick anything that fits.</p>
+            <div class="mt-3 grid gap-2 sm:grid-cols-2">
+              <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
+                <input type="checkbox" name="HOUSING_RENT_APT" value="Yes" class="accent-forest-700" />
+                An apartment to rent
+              </label>
+              <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
+                <input type="checkbox" name="HOUSING_RENT_LOFT" value="Yes" class="accent-forest-700" />
+                A loft to rent
+              </label>
+              <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
+                <input type="checkbox" name="HOUSING_RENT_PENT" value="Yes" class="accent-forest-700" />
+                A penthouse to rent
+              </label>
+              <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
+                <input type="checkbox" name="HOUSING_OWN_CONDO" value="Yes" class="accent-forest-700" />
+                A condo to own
+              </label>
+              <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
+                <input type="checkbox" name="HOUSING_OWN_TOWN" value="Yes" class="accent-forest-700" />
+                A townhome to own
+              </label>
+              <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
+                <input type="checkbox" name="HOUSING_CURIOUS" value="Yes" class="accent-forest-700" />
+                Curious about all of it
+              </label>
+            </div>
+          </fieldset>
+
           {/* Mailchimp anti-bot honeypot */}
           <div style="position:absolute;left:-5000px" aria-hidden="true">
             <input type="text" name="b_PLACEHOLDER_PLACEHOLDER" tabindex="-1" value="" />
@@ -462,3 +503,35 @@ const description =
     </div>
   </footer>
 </Layout>
+
+<style>
+  /* Conditional reveal for housing-type question.
+     Pure CSS via :has() — appears when "Future resident" is selected,
+     disappears when any other option is. No JS required. */
+  .housing-question {
+    display: none;
+  }
+
+  form:has(input[name="MMERGE4"][value="Future resident"]:checked)
+    .housing-question {
+    display: block;
+    animation: housing-fade-in 200ms ease-out;
+  }
+
+  @keyframes housing-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .housing-question {
+      animation: none !important;
+    }
+  }
+</style>
