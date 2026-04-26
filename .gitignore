@@ -26,3 +26,6 @@ pnpm-debug.log*
 
 # Wrangler/Cloudflare local
 .wrangler/
+
+# Extracted deck source material (intermediate; not used by the build)
+src/assets/deck-extracts/
