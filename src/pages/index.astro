@@ -406,14 +406,13 @@ const description =
           </fieldset>
 
           {/*
-            Housing-type question, revealed only when "Future resident" is
-            selected. CSS-only via :has() (no JS required).
+            Housing-type question (always shown).
             For Mailchimp: map each checkbox to a Group (Mailchimp's term for
             audience tags) — gives clean rent/own + form-factor segmentation.
             Field names below are placeholders; rename to match the
             group[ID][SUBID] format Mailchimp generates.
           */}
-          <fieldset class="housing-question">
+          <fieldset>
             <legend class="block text-sm font-medium text-forest-800">
               If a home opened up, what would catch your eye?
             </legend>
@@ -504,34 +503,3 @@ const description =
   </footer>
 </Layout>
 
-<style>
-  /* Conditional reveal for housing-type question.
-     Pure CSS via :has() — appears when "Future resident" is selected,
-     disappears when any other option is. No JS required. */
-  .housing-question {
-    display: none;
-  }
-
-  form:has(input[name="MMERGE4"][value="Future resident"]:checked)
-    .housing-question {
-    display: block;
-    animation: housing-fade-in 200ms ease-out;
-  }
-
-  @keyframes housing-fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(-4px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .housing-question {
-      animation: none !important;
-    }
-  }
-</style>
