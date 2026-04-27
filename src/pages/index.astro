@@ -339,12 +339,12 @@ const description =
         </p>
 
         {/*
-          Mailchimp action URL placeholder.
-          TODO(erik): replace action URL with the real Mailchimp endpoint.
-          Field names use Mailchimp conventions (EMAIL, FNAME, MMERGE3, MMERGE4).
+          Mailchimp embedded-form endpoint for the "Now City Neighborhoods"
+          audience (us19). Field/group IDs come straight from Mailchimp's
+          embed code as of 2026-04-26.
         */}
         <form
-          action="https://nowcitylabs.us21.list-manage.com/subscribe/post?u=PLACEHOLDER&id=PLACEHOLDER"
+          action="https://nowcitylabs.us19.list-manage.com/subscribe/post?u=88bfb2c8f34fdd20e85cce03f&amp;id=5812d18a23&amp;f_id=0099bbe7f0"
           method="post"
           target="_blank"
           novalidate
@@ -379,12 +379,12 @@ const description =
           </div>
 
           <div>
-            <label for="MMERGE3" class="block text-sm font-medium text-forest-800">
+            <label for="LOCATION" class="block text-sm font-medium text-forest-800">
               Where would you want a Now City neighborhood?
             </label>
             <input
-              id="MMERGE3"
-              name="MMERGE3"
+              id="LOCATION"
+              name="LOCATION"
               type="text"
               placeholder="city, metro, or ZIP"
               class="mt-2 w-full rounded-md border border-stone-200 bg-white px-4 py-3 text-base text-forest-800 placeholder:text-stone-400 focus:border-forest-700 focus:outline-none focus:ring-2 focus:ring-forest-700/20"
@@ -397,30 +397,30 @@ const description =
             </legend>
             <div class="mt-3 grid gap-2 sm:grid-cols-2">
               <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
-                <input type="radio" name="MMERGE4" value="Future resident" class="accent-forest-700" />
+                <input type="radio" name="group[181120]" value="4" class="accent-forest-700" />
                 Future resident
               </label>
               <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
-                <input type="radio" name="MMERGE4" value="Landowner or operator" class="accent-forest-700" />
+                <input type="radio" name="group[181120]" value="8" class="accent-forest-700" />
                 Landowner or operator
               </label>
               <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
-                <input type="radio" name="MMERGE4" value="Investor" class="accent-forest-700" />
+                <input type="radio" name="group[181120]" value="16" class="accent-forest-700" />
                 Investor
               </label>
               <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
-                <input type="radio" name="MMERGE4" value="Curious" class="accent-forest-700" />
+                <input type="radio" name="group[181120]" value="32" class="accent-forest-700" />
                 Curious
               </label>
             </div>
           </fieldset>
 
           {/*
-            Housing-type question (always shown).
-            For Mailchimp: map each checkbox to a Group (Mailchimp's term for
-            audience tags) — gives clean rent/own + form-factor segmentation.
-            Field names below are placeholders; rename to match the
-            group[ID][SUBID] format Mailchimp generates.
+            Housing interest. Mapped to Mailchimp Group 181121.
+            Each checkbox name uses Mailchimp's group[GROUP_ID][OPTION_ID]
+            convention. The value attribute is intentionally empty;
+            checked-state alone tells Mailchimp to add the contact to
+            that subgroup.
           */}
           <fieldset>
             <legend class="block text-sm font-medium text-forest-800">
@@ -429,35 +429,35 @@ const description =
             <p class="mt-1 text-xs text-stone-500">Optional. Pick anything that fits.</p>
             <div class="mt-3 grid gap-2 sm:grid-cols-2">
               <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
-                <input type="checkbox" name="HOUSING_RENT_APT" value="Yes" class="accent-forest-700" />
+                <input type="checkbox" name="group[181121][64]" class="accent-forest-700" />
                 An apartment to rent
               </label>
               <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
-                <input type="checkbox" name="HOUSING_RENT_LOFT" value="Yes" class="accent-forest-700" />
+                <input type="checkbox" name="group[181121][128]" class="accent-forest-700" />
                 A loft to rent
               </label>
               <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
-                <input type="checkbox" name="HOUSING_RENT_PENT" value="Yes" class="accent-forest-700" />
+                <input type="checkbox" name="group[181121][256]" class="accent-forest-700" />
                 A penthouse to rent
               </label>
               <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
-                <input type="checkbox" name="HOUSING_OWN_CONDO" value="Yes" class="accent-forest-700" />
+                <input type="checkbox" name="group[181121][512]" class="accent-forest-700" />
                 A condo to own
               </label>
               <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
-                <input type="checkbox" name="HOUSING_OWN_TOWN" value="Yes" class="accent-forest-700" />
+                <input type="checkbox" name="group[181121][1024]" class="accent-forest-700" />
                 A townhome to own
               </label>
               <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-4 py-3 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5">
-                <input type="checkbox" name="HOUSING_CURIOUS" value="Yes" class="accent-forest-700" />
+                <input type="checkbox" name="group[181121][2048]" class="accent-forest-700" />
                 Curious about all of it
               </label>
             </div>
           </fieldset>
 
-          {/* Mailchimp anti-bot honeypot */}
+          {/* Mailchimp anti-bot honeypot. Hidden field; bots fill it, humans don't. */}
           <div style="position:absolute;left:-5000px" aria-hidden="true">
-            <input type="text" name="b_PLACEHOLDER_PLACEHOLDER" tabindex="-1" value="" />
+            <input type="text" name="b_88bfb2c8f34fdd20e85cce03f_5812d18a23" tabindex="-1" value="" />
           </div>
 
           <div class="mt-2">
