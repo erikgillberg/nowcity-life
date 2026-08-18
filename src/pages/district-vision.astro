@@ -15,6 +15,9 @@ import sportsDay from '../assets/pages/sports-day.jpg';
 import market from '../assets/pages/morning-market.jpg';
 import scandiAerial from '../assets/pages/scandi-aerial.jpg';
 import omPlacemaking from '../assets/pages/om-placemaking.jpg';
+import reffen from '../assets/pages/reffen.jpg';
+import torvehallerne from '../assets/pages/torvehallerne.jpg';
+import streetWide from '../assets/pages/street-wide.jpg';
 import omResilience from '../assets/pages/om-resilience.jpg';
 import omFood from '../assets/pages/om-food.jpg';
 import omLandscape from '../assets/pages/om-landscape.jpg';
@@ -81,6 +84,10 @@ const precedents = [
           </div>
         ))}
       </div>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <Figure src={torvehallerne} alt="Inside a Copenhagen market hall." cap="Torvehallerne, Copenhagen: daily life as the anchor." aspect="aspect-[4/3]" widths={[500, 582]} />
+        <Figure src={reffen} alt="A Copenhagen harbor district from above." cap="Reffen, Copenhagen: a district grown from almost nothing but welcome." aspect="aspect-[4/3]" widths={[500, 667]} />
+      </div>
     </div>
   </section>
 
@@ -100,6 +107,7 @@ const precedents = [
           </div>
         ))}
       </div>
+      <div class="mt-8"><Figure src={streetWide} alt="A street in the planned district." cap="Their lessons, our streets. Concept rendering." aspect="aspect-[21/9]" widths={[800, 1400, 2000]} sizes="(min-width: 1024px) 1100px, 100vw" /></div>
     </div>
   </section>
 

@@ -1,20 +1,33 @@
 ---
 const { current = '' } = Astro.props;
 const links = [
-  ['/manifesto', 'Manifesto'],
-  ['/district-vision', 'How We Build'],
-  ['/neighborhood', 'The Neighborhood'],
+  ['/', 'A New Neighborhood'],
+  ['/neighborhood', 'Living Here'],
   ['/homes', 'Homes'],
-  ['/about', 'About'],
+  ['/district-vision', 'How We Build'],
 ];
+const aboutItems = [
+  ['/about', 'About Us'],
+  ['/manifesto', 'Manifesto'],
+  ['/team', 'Team'],
+];
+const aboutActive = aboutItems.some(([href]) => href === current);
 ---
-<header class="border-b border-stone-100">
+<header class="border-b border-stone-100 bg-cream-50/80 backdrop-blur">
   <div class="container-wide flex flex-wrap items-center justify-between gap-4 py-5">
     <a href="/" class="font-display text-lg font-semibold text-forest-700 no-underline">Now City <span class="text-copper-400">Neighborhoods</span></a>
     <nav class="flex flex-wrap items-center gap-5">
       {links.map(([href, label]) => (
         <a href={href} class={`text-xs font-medium uppercase tracking-[0.14em] no-underline ${current === href ? 'text-forest-700' : 'text-stone-500 hover:text-copper-400'}`}>{label}</a>
       ))}
+      <div class="group relative">
+        <a href="/about" class={`inline-flex items-center gap-1 text-xs font-medium uppercase tracking-[0.14em] no-underline ${aboutActive ? 'text-forest-700' : 'text-stone-500 hover:text-copper-400'}`}>About Us <span aria-hidden="true" class="text-[9px]">▾</span></a>
+        <div class="invisible absolute right-0 top-full z-40 min-w-[150px] rounded-md border border-stone-100 bg-white py-2 opacity-0 shadow-sm transition-all group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+          {aboutItems.map(([href, label]) => (
+            <a href={href} class={`block px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] no-underline ${current === href ? 'text-forest-700' : 'text-stone-500 hover:text-copper-400'}`}>{label}</a>
+          ))}
+        </div>
+      </div>
       <a href="/#follow-along" class="btn-primary !py-2 !px-4 text-xs">Join the List</a>
     </nav>
   </div>

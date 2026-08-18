@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SubNav from '../components/SubNav.astro';
+import SubFooter from '../components/SubFooter.astro';
+
+const description = 'The Now City team: founders and the senior advisors whose craft this work stands on.';
+---
+
+<Layout title="Team" description={description}>
+  <SubNav current="/team" />
+
+  <section class="pt-12 md:pt-16">
+    <div class="container-narrow">
+      <p class="eyebrow">Team</p>
+      <h1 class="mt-4 font-display text-4xl leading-tight text-forest-700 md:text-5xl">Built around the work in front of us.</h1>
+      <p class="lede mt-6">A small team, hired carefully, with partners brought in for the right moment in the right project.</p>
+    </div>
+  </section>
+
+  <section class="py-section">
+    <div class="container-narrow">
+      <p class="eyebrow">Founders</p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div class="rounded-md border border-stone-100 bg-cream-50 p-7">
+          <h2 class="font-display text-2xl text-forest-700">Erik Gillberg</h2>
+          <p class="text-sm text-stone-500">Co-founder &amp; CEO</p>
+          <p class="prose-body mt-4 !text-[15px]">Thirty years inside the operating reality of property: how buildings live, age, and either serve or fail the people in them. Twenty years alongside it in technology and startup leadership. Now City is the synthesis: neighborhoods treated as living systems, with capital, design, and operations engineered together from the start.</p>
+          <p class="mt-4"><a href="https://www.linkedin.com/in/erikgillberg/" class="text-sm text-forest-700">LinkedIn →</a></p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-cream-50 p-7">
+          <h2 class="font-display text-2xl text-forest-700">Ritchie Ju</h2>
+          <p class="text-sm text-stone-500">Co-founder &amp; COO</p>
+          <p class="prose-body mt-4 !text-[15px]">Ritchie leads design, development, and operations. Architecture at Carnegie Mellon, architecture and urban design at Columbia, and an MBA in progress at Johns Hopkins. Previously a mobility planner at Lyft in New York, then capital raise and development support on a 1,000-unit mixed-use project in NYC.</p>
+          <p class="mt-4"><a href="https://www.linkedin.com/in/ritchie-ju-616059124/" class="text-sm text-forest-700">LinkedIn →</a></p>
+        </div>
+      </div>
+      <p class="prose-body mt-8">We work with senior advisors whose craft is directly essential to the work, from local economics to master planning, building on the community builders who came before us. Meet them on <a href="https://nowcity.co/team">the company site</a>.</p>
+    </div>
+  </section>
+
+  <section class="py-section bg-cream-50">
+    <div class="container-narrow">
+      <p class="eyebrow">Join Us</p>
+      <h2 class="mt-4 font-display text-3xl text-forest-700">Help us build it.</h2>
+      <p class="prose-body mt-5">We are designers, developers, and operators who care deeply about people and ecosystems. We hire carefully across development, urban design, capital, operations, and engineering, and interns and project-based collaborators are welcome too. Introduce yourself at <a href="mailto:erik@nowcitylabs.com">erik@nowcitylabs.com</a>.</p>
+    </div>
+  </section>
+
+  <SubFooter />
+</Layout>

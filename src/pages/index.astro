@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SubNav from '../components/SubNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import { Image } from 'astro:assets';
 
 import heroAerial from '../assets/deck/hero-aerial.jpg';
@@ -15,6 +17,7 @@ const description =
 ---
 
 <Layout title="Now City Neighborhoods" description={description}>
+  <SubNav current="/" />
   {/* ============================================================ */}
   {/* SECTION 1 — HERO                                             */}
   {/* ============================================================ */}
@@ -510,16 +513,6 @@ const description =
   {/* ============================================================ */}
   {/* FOOTER                                                       */}
   {/* ============================================================ */}
-  <footer class="border-t border-stone-100 py-10">
-    <div class="container-wide flex flex-col items-start justify-between gap-4 text-xs text-stone-500 md:flex-row md:items-center">
-      <p>© {new Date().getFullYear()} Now City Inc. All rights reserved.</p>
-      <p>
-        <a href="/about" class="text-forest-700 underline">About us</a> ·
-        <a href="/privacy" class="text-forest-700 underline">Privacy &amp; disclaimers</a> ·
-        For developers, landowners, and municipalities →
-        <a href="https://nowcity.co" class="text-forest-700 underline">nowcity.co</a>
-      </p>
-    </div>
-  </footer>
+  <SiteFooter />
 </Layout>
 
