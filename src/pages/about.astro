@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SubNav from '../components/SubNav.astro';
+import SubFooter from '../components/SubFooter.astro';
+
+const description =
+  'Now City Inc. is a small, bootstrapped team designing and building complete neighborhoods: walkable, green, and made to improve with time.';
+---
+
+<Layout title="About Us" description={description}>
+  <SubNav current="/about" />
+
+  <section class="pt-12 md:pt-16">
+    <div class="container-narrow">
+      <p class="eyebrow">About Us</p>
+      <h1 class="mt-4 font-display text-4xl leading-tight text-forest-700 md:text-5xl">A small team, building for the long now.</h1>
+      <p class="lede mt-6">Now City Inc. designs and builds complete neighborhoods: walkable, green, and made to improve with time. We are a small, bootstrapped team, and we intend to stay with what we build, tending it for decades rather than years.</p>
+      <p class="prose-body mt-6">The full argument for why lives in <a href="/manifesto">the manifesto</a>. The short version: the way America builds is failing the people it is for, the fixes already exist, and someone has to pull them together into real places. That is the work.</p>
+    </div>
+  </section>
+
+  <section class="py-section">
+    <div class="container-narrow">
+      <p class="eyebrow">Founders</p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div class="rounded-md border border-stone-100 bg-cream-50 p-7">
+          <h2 class="font-display text-2xl text-forest-700">Erik Gillberg</h2>
+          <p class="text-sm text-stone-500">Co-founder &amp; CEO</p>
+          <p class="prose-body mt-4 !text-[15px]">Thirty years inside the operating reality of property: how buildings live, age, and either serve or fail the people in them. Twenty years alongside it in technology and startup leadership. Now City is the synthesis: neighborhoods treated as living systems, with capital, design, and operations engineered together from the start.</p>
+          <p class="mt-4"><a href="https://www.linkedin.com/in/erikgillberg/" class="text-sm text-forest-700">LinkedIn →</a></p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-cream-50 p-7">
+          <h2 class="font-display text-2xl text-forest-700">Ritchie Ju</h2>
+          <p class="text-sm text-stone-500">Co-founder &amp; COO</p>
+          <p class="prose-body mt-4 !text-[15px]">Ritchie leads design, development, and operations. Architecture at Carnegie Mellon, architecture and urban design at Columbia, and an MBA in progress at Johns Hopkins. Previously a mobility planner at Lyft in New York, then capital raise and development support on a 1,000-unit mixed-use project in NYC.</p>
+          <p class="mt-4"><a href="https://www.linkedin.com/in/ritchie-ju-616059124/" class="text-sm text-forest-700">LinkedIn →</a></p>
+        </div>
+      </div>
+      <p class="prose-body mt-8">We work with senior advisors whose craft is directly essential to the work, from local economics to master planning, building on the community builders who came before us. Meet them on <a href="https://nowcity.co/team">the company site</a>.</p>
+    </div>
+  </section>
+
+  <section class="py-section bg-cream-50">
+    <div class="container-narrow">
+      <p class="eyebrow">How We Show Up</p>
+      <h2 class="mt-4 font-display text-3xl text-forest-700 md:text-4xl">Six values.</h2>
+      <div class="mt-8 grid gap-5 md:grid-cols-2">
+        <div class="rounded-md border border-stone-100 bg-white p-6"><h3 class="font-display text-lg text-forest-700">Cultivate Curiosity</h3><p class="prose-body mt-2 !text-[15px]">Where are the healthiest, happiest people and places in the world, and what can we learn from them? We chase the answers.</p></div>
+        <div class="rounded-md border border-stone-100 bg-white p-6"><h3 class="font-display text-lg text-forest-700">Catalyze Creativity</h3><p class="prose-body mt-2 !text-[15px]">Creativity is imagination in action: how we learn, grow, and solve what nobody else has solved yet.</p></div>
+        <div class="rounded-md border border-stone-100 bg-white p-6"><h3 class="font-display text-lg text-forest-700">Be Courageous</h3><p class="prose-body mt-2 !text-[15px]">Walk a mile in someone else's shoes, face the hard challenges, and act for the good of the whole.</p></div>
+        <div class="rounded-md border border-stone-100 bg-white p-6"><h3 class="font-display text-lg text-forest-700">Develop Diversity</h3><p class="prose-body mt-2 !text-[15px]">Because it is right, and because it works: diverse communities of people, species, and ideas are healthier and more alive.</p></div>
+        <div class="rounded-md border border-stone-100 bg-white p-6"><h3 class="font-display text-lg text-forest-700">Build Trust</h3><p class="prose-body mt-2 !text-[15px]">Trust is how a team, a neighborhood, and a partnership stay coordinated. Transparency builds it, and we choose it.</p></div>
+        <div class="rounded-md border border-stone-100 bg-white p-6"><h3 class="font-display text-lg text-forest-700">Begin Regeneration</h3><p class="prose-body mt-2 !text-[15px]">Sustainable holds the line. Regenerative makes things better than we found them. We are here for repair, renewal, and growth.</p></div>
+      </div>
+      <p class="prose-body mt-8">If you are a landowner, a city, or a capital partner, the company side of this work lives at <a href="https://nowcity.co">nowcity.co</a>. If you might live in a place like this, you are why it exists.</p>
+    </div>
+  </section>
+
+  <SubFooter />
+</Layout>

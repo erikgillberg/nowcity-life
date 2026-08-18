@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SubNav from '../components/SubNav.astro';
+import SubFooter from '../components/SubFooter.astro';
+
+const description = 'Privacy policy and disclaimers for nowcity.life.';
+---
+
+<Layout title="Privacy & Disclaimers" description={description}>
+  <SubNav current="/privacy" />
+
+  <section class="pt-12 pb-16 md:pt-16">
+    <div class="container-narrow">
+      <p class="eyebrow">The Fine Print, in Plain Language</p>
+      <h1 class="mt-4 font-display text-4xl leading-tight text-forest-700 md:text-5xl">Privacy &amp; disclaimers.</h1>
+      <p class="text-sm text-stone-500 mt-4">Last updated August 2026</p>
+
+      <h2 class="mt-10 font-display text-2xl text-forest-700">What we collect, and why</h2>
+      <div class="prose-body mt-4">
+        <p>When you join the list, we collect what you give us: your name, email, where you would want a Now City neighborhood, the home types that interest you, and anything you write in the notes. We use it for exactly two things: sending you occasional updates, and understanding what future residents actually want so we can design for it.</p>
+        <p>We use Mailchimp to store and send. Their privacy practices apply to the data they process for us. We do not sell your information, rent it, or share it with anyone outside the team and the tools that make the list work.</p>
+        <p>Every email includes an unsubscribe link, and unsubscribing works immediately. If you want your information deleted entirely, write to <a href="mailto:erik@nowcitylabs.com">erik@nowcitylabs.com</a> and we will take care of it.</p>
+        <p>The site itself does not run advertising trackers. Basic hosting analytics may count visits in aggregate.</p>
+      </div>
+
+      <h2 class="mt-10 font-display text-2xl text-forest-700">Disclaimers, honestly stated</h2>
+      <div class="prose-body mt-4">
+        <p>Everything on this site describes a vision in progress. The imagery is concept rendering, not photography of finished places. Plans, designs, home types, timelines, and locations are early and evolving, and they will change as we learn.</p>
+        <p>Nothing on this site is an offer to sell or lease real estate, an offer of securities, or investment advice. We are not currently selling or leasing homes. Joining the list expresses interest and reserves nothing; it simply means you will hear early when opportunities to pre-order or reserve become real.</p>
+        <p>If any of this raises a question, ask us: <a href="mailto:erik@nowcitylabs.com">erik@nowcitylabs.com</a>. Straight questions get straight answers.</p>
+      </div>
+    </div>
+  </section>
+
+  <SubFooter />
+</Layout>
