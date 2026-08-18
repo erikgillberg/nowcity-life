@@ -1,0 +1,147 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SubNav from '../components/SubNav.astro';
+import SubFooter from '../components/SubFooter.astro';
+import { Image } from 'astro:assets';
+
+import plaza from '../assets/pages/plaza.jpg';
+import streetRetail from '../assets/pages/street-retail.jpg';
+import wellnessStreet from '../assets/pages/wellness-street.jpg';
+import waterCourtyards from '../assets/pages/water-courtyards.jpg';
+import townhomes from '../assets/pages/townhomes.jpg';
+import sportsDay from '../assets/pages/sports-day.jpg';
+import market from '../assets/pages/morning-market.jpg';
+import scandiAerial from '../assets/pages/scandi-aerial.jpg';
+import interiorDining from '../assets/pages/interior-dining.jpg';
+import oregonCoast from '../assets/pages/oregon-coast.jpg';
+import silverFalls from '../assets/pages/silver-falls.jpg';
+import vineyard from '../assets/pages/vineyard.jpg';
+import oregonBiking from '../assets/pages/oregon-biking.jpg';
+
+const description =
+  'One connected neighborhood: housing, work, play, food, wellness, and mobility sharing the same few acres. The Now City district vision, taking shape on a riverfront in Oregon.';
+
+const gallery = [
+  { img: plaza, cap: 'The central park and plaza, where the district gathers.' },
+  { img: streetRetail, cap: 'Street level: courtyard living behind walkable retail edges.' },
+  { img: wellnessStreet, cap: 'The wellness neighborhood: family services on quiet green streets.' },
+  { img: waterCourtyards, cap: 'Water, courtyards, and everyday life.' },
+  { img: townhomes, cap: 'Townhomes with front doors on the street.' },
+  { img: sportsDay, cap: 'The sports and recreation district by day.' },
+];
+const nature = [
+  { img: oregonCoast, cap: 'The Oregon Coast, an easy day trip.' },
+  { img: silverFalls, cap: 'Rivers, forests, and waterfalls in every direction.' },
+  { img: vineyard, cap: 'Surrounded by vineyards, farms, and food.' },
+  { img: oregonBiking, cap: 'Four-season outdoor living.' },
+];
+---
+
+<Layout title="District Vision" description={description}>
+  <SubNav current="/district-vision" />
+
+  <section class="pt-12 md:pt-16">
+    <div class="container-wide">
+      <div class="overflow-hidden rounded-md shadow-sm">
+        <Image src={plaza} alt="A central park and plaza surrounded by mid-rise timber buildings." widths={[800, 1400, 1920]} sizes="(min-width: 1024px) 1100px, 100vw" class="h-auto w-full object-cover" loading="eager" />
+      </div>
+      <div class="mt-10 max-w-3xl">
+        <p class="eyebrow">District Vision</p>
+        <h1 class="mt-4 font-display text-4xl leading-tight text-forest-700 md:text-5xl">A neighborhood, made whole.</h1>
+        <p class="lede mt-6">One connected neighborhood where housing, work, play, food, wellness, and mobility share the same few acres. Concept renderings of our first district, taking shape on a riverfront in Oregon.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section">
+    <div class="container-wide">
+      <p class="eyebrow">The Place</p>
+      <h2 class="mt-4 max-w-2xl font-display text-3xl text-forest-700 md:text-4xl">From the river up, one connected place.</h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {gallery.map(({ img, cap }) => (
+          <figure>
+            <div class="overflow-hidden rounded-md shadow-sm"><Image src={img} alt={cap} widths={[700, 1200, 1920]} sizes="(min-width: 768px) 50vw, 100vw" class="h-auto w-full object-cover" /></div>
+            <figcaption class="mt-2 text-xs text-stone-500">{cap}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <figure class="mt-6">
+        <div class="overflow-hidden rounded-md shadow-sm"><Image src={market} alt="A market hall full of daily life." widths={[800, 1400, 2000]} sizes="(min-width: 1024px) 1100px, 100vw" class="h-auto w-full object-cover" /></div>
+        <figcaption class="mt-2 text-xs text-stone-500">The Now City Market: the daily civic marketplace at the heart of it all.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="py-section bg-cream-50">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <p class="eyebrow">Living Here</p>
+        <h2 class="mt-4 font-display text-3xl text-forest-700 md:text-4xl">The first block sets the tone.</h2>
+        <p class="prose-body mt-5">The first courtyard blocks are designed around Scandinavian courtyard urbanism and Japanese garden philosophy: family-friendly density wrapped around quiet interior gardens, with retail and daily life at the street edge. Light-filled homes blend natural materials and Nordic simplicity with high-performance building systems.</p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <h3 class="font-display text-xl text-forest-700">A quiet center</h3>
+          <p class="prose-body mt-3 !text-base">Interior gardens with kid-safe green space: calm at the heart of density, supervision built into everyday life.</p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <h3 class="font-display text-xl text-forest-700">An active edge</h3>
+          <p class="prose-body mt-3 !text-base">Cafés, everyday retail, and workspace face the street: daily errands on foot, neighbors by default.</p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <h3 class="font-display text-xl text-forest-700">A home that works</h3>
+          <p class="prose-body mt-3 !text-base">Studios to three-bedroom townhomes, engineered so comfort is the default and the energy bill is the proof.</p>
+        </div>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <figure><div class="overflow-hidden rounded-md shadow-sm"><Image src={scandiAerial} alt="A courtyard block from above." widths={[700, 1302]} sizes="(min-width: 768px) 50vw, 100vw" class="h-auto w-full object-cover" /></div><figcaption class="mt-2 text-xs text-stone-500">The first block from above.</figcaption></figure>
+        <figure><div class="overflow-hidden rounded-md shadow-sm"><Image src={interiorDining} alt="A dining room holding daily life." widths={[700, 1330]} sizes="(min-width: 768px) 50vw, 100vw" class="h-auto w-full object-cover" /></div><figcaption class="mt-2 text-xs text-stone-500">Rooms that hold daily life.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <p class="eyebrow">Everyday Vitality</p>
+        <h2 class="mt-4 font-display text-3xl text-forest-700 md:text-4xl">Designed so life here keeps getting better.</h2>
+        <p class="prose-body mt-5">Our mission is to accelerate the transition to regenerative, resilient, and equitable communities. In a neighborhood, those words become daily experiences:</p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="rounded-md border border-stone-100 bg-cream-50 p-6">
+          <h3 class="font-display text-xl text-forest-700">Regeneration</h3>
+          <p class="prose-body mt-3 !text-base">Clean air, water, soil, and food: the natural systems that sustain daily life, restored at neighborhood scale and getting healthier every year.</p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-cream-50 p-6">
+          <h3 class="font-display text-xl text-forest-700">Resilience</h3>
+          <p class="prose-body mt-3 !text-base">Homes, energy, food, and social systems designed to perform under stress, so a hard week for the grid is a normal week for the neighborhood.</p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-cream-50 p-6">
+          <h3 class="font-display text-xl text-forest-700">Equity</h3>
+          <p class="prose-body mt-3 !text-base">Designed around caregiving, childhood, aging, and access, so the neighborhood works for the people who usually get designed around.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section bg-cream-50">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <p class="eyebrow">Oregon</p>
+        <h2 class="mt-4 font-display text-3xl text-forest-700 md:text-4xl">An hour from everything worth loving.</h2>
+        <p class="prose-body mt-5">The first neighborhood is rising in one of the most livable and productive regions in the country: world-class nature in every direction, a growing innovation economy, and an under-recognized quality of life. Portland and its international airport within easy reach; the coast, the mountains, and wine country within about an hour. Oregon ranked first in the nation for inbound movers in 2025.</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {nature.map(({ img, cap }) => (
+          <figure>
+            <div class="overflow-hidden rounded-md shadow-sm"><Image src={img} alt={cap} widths={[500, 900, 1400]} sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" class="aspect-[4/3] h-auto w-full object-cover" /></div>
+            <figcaption class="mt-2 text-xs text-stone-500">{cap}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="prose-body mt-10 max-w-3xl">Want to go deeper? The thinking behind all of it lives in <a href="/manifesto">the manifesto</a>, the daily rhythm in <a href="/neighborhood">a day here</a>, and the homes themselves at <a href="/homes">homes</a>.</p>
+    </div>
+  </section>
+
+  <SubFooter />
+</Layout>
