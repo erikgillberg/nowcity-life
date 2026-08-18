@@ -37,12 +37,12 @@
   }
 
   a {
-    @apply text-forest-700 underline-offset-4 transition-colors;
+    @apply text-forest-700 underline decoration-copper-400/50 underline-offset-4 transition-colors;
     text-decoration-thickness: 1px;
   }
 
   a:hover {
-    @apply text-copper-400;
+    @apply text-copper-400 decoration-copper-400;
   }
 }
 
