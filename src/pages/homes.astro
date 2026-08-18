@@ -12,6 +12,12 @@ import Figure from '../components/Figure.astro';
 import intBedroom1 from '../assets/pages/int-bedroom1.jpg';
 import intBedroom2 from '../assets/pages/int-bedroom2.jpg';
 import intDining from '../assets/pages/int-dining.jpg';
+import intKitchen from '../assets/pages/int-kitchen.jpg';
+import intBath from '../assets/pages/int-bath.jpg';
+import intBalcony from '../assets/pages/int-balcony.jpg';
+import intKids from '../assets/pages/int-kids.jpg';
+import intColiving from '../assets/pages/int-coliving.jpg';
+import intFlex from '../assets/pages/int-flex.jpg';
 import interiorFamily from '../assets/pages/interior-family.jpg';
 import stairLight from '../assets/pages/stair-light.jpg';
 import blockCorner from '../assets/pages/block-corner.jpg';
@@ -50,13 +56,19 @@ const description =
         <p class="prose-body mt-4">Natural materials that age well. Daylight in every room. Air that is filtered and fresh, walls that keep the weather out and the quiet in. Concept interiors from the current design work:</p>
       </div>
       <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <Figure src={intKitchen} alt="A parent and child cooking in a daylight-filled kitchen." cap="A kitchen the day starts in." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 768px) 33vw, 100vw" />
+        <Figure src={intBath} alt="A calm bathroom in warm stone and wood." cap="Calm, in warm stone and wood." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 768px) 33vw, 100vw" />
+        <Figure src={intBalcony} alt="A balcony with morning coffee overlooking the courtyard." cap="Morning coffee, courtyard side." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 768px) 33vw, 100vw" />
+      </div>
+      <div class="mt-6 grid gap-6 md:grid-cols-3">
         <Figure src={intBedroom1} alt="A calm bedroom with natural materials and soft light." cap="A bedroom that helps you sleep." aspect="aspect-[4/5]" widths={[500, 1124]} sizes="(min-width: 768px) 33vw, 100vw" />
         <Figure src={intDining} alt="A dining room with a wooden table and generous windows." cap="A table the day gathers around." aspect="aspect-[4/5]" widths={[500, 1330]} sizes="(min-width: 768px) 33vw, 100vw" />
         <Figure src={intBedroom2} alt="A bedroom with a person reading on the bed." cap="Quiet, by design." aspect="aspect-[4/5]" widths={[500, 1326]} sizes="(min-width: 768px) 33vw, 100vw" />
       </div>
-      <div class="mt-6 grid gap-6 md:grid-cols-2">
-        <Figure src={interiorFamily} alt="A family in a light-filled living room." cap="Rooms that hold daily life." aspect="aspect-[16/9]" widths={[700, 1376]} />
-        <Figure src={stairLight} alt="A stairwell washed in daylight." cap="Daylight, even where most homes give up on it." aspect="aspect-[16/9]" widths={[700, 1376]} />
+      <div class="mt-6 grid gap-6 md:grid-cols-3">
+        <Figure src={intKids} alt="A kids' bedroom with a bunk nook and window seat." cap="A room worth growing up in." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 768px) 33vw, 100vw" />
+        <Figure src={intFlex} alt="A flexible room set up as a home office, ready to become a nursery." cap="The office that becomes the nursery." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 768px) 33vw, 100vw" />
+        <Figure src={interiorFamily} alt="A family in a light-filled living room." cap="Rooms that hold daily life." aspect="aspect-[3/2]" widths={[700, 1376]} sizes="(min-width: 768px) 33vw, 100vw" />
       </div>
     </div>
   </section>
@@ -181,7 +193,7 @@ const description =
           <figcaption class="p-5"><span class="eyebrow !text-[10px]">Rent or own</span><h3 class="mt-1 font-display text-lg text-forest-700">The Scandi Block</h3><p class="mt-2 text-sm text-stone-700">Courtyard living: a quiet garden heart, daily life at the edges, and the whole block as your backyard.</p></figcaption>
         </figure>
         <figure class="rounded-md border border-stone-100 bg-white overflow-hidden">
-          <Image src={interiorDining} alt="A generous shared dining room." widths={[600, 1200]} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" class="aspect-[3/2] h-auto w-full object-cover" />
+          <Image src={intColiving} alt="Residents cooking together around a shared kitchen and long table." widths={[600, 1200]} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" class="aspect-[3/2] h-auto w-full object-cover" />
           <figcaption class="p-5"><span class="eyebrow !text-[10px]">To rent</span><h3 class="mt-1 font-display text-lg text-forest-700">Co-living</h3><p class="mt-2 text-sm text-stone-700">Private rooms, generous shared kitchens and long tables, priced for starting out and built for company.</p></figcaption>
         </figure>
         <figure class="rounded-md border border-stone-100 bg-white overflow-hidden">
