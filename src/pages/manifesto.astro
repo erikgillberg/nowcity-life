@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SubNav from '../components/SubNav.astro';
+import SubFooter from '../components/SubFooter.astro';
+
+const description =
+  'Cities are humanity\'s largest technology. They are due for an upgrade. The Now City manifesto, by Erik Gillberg.';
+---
+
+<Layout title="The Now City Manifesto" description={description} ogImage="/og/manifesto.jpg">
+  <SubNav current="/manifesto" />
+
+  <article class="py-14 md:py-20">
+    <div class="container-narrow">
+      <p class="eyebrow">The Now City Manifesto</p>
+      <h1 class="mt-4 font-display text-4xl leading-tight text-forest-700 md:text-5xl">Cities are humanity's largest technology. They are due for an upgrade.</h1>
+      <p class="mt-5 text-sm text-stone-500">Erik Gillberg · August 2026</p>
+
+      <div class="prose-body mt-10">
+        <p>My grandparents came to Los Angeles a hundred years ago and watched it become a poster child for sprawl and traffic. At the end of her life, my Grammy Lois told me she was sorry that her generation was leaving such a mess to clean up. She would be mortified to see it now: worse traffic, two million dollars for a small house in her old neighborhood, thousands of people living on the street.</p>
+        <p>That world descends from a single vision: the General Motors and Shell exhibits at the 1939 World's Fair, a future of a house for every family and the cars and fuel to reach everything scattered around it. It was compelling. People chose it. It built the world my grandmother apologized for.</p>
+        <p>A vision of the future, made vivid enough, reorganizes everything: capital, industry, land, law, daily life. It is time to choose again.</p>
+      </div>
+
+      <div class="my-12 rule-thin"></div>
+
+      <h2 class="font-display text-2xl text-forest-700 md:text-3xl">Why</h2>
+      <div class="prose-body mt-6">
+        <p>The way we build is failing the people it is for. Homes cost more and deliver less. Daily life is spread across a windshield. Health, community, and nature are treated as amenities instead of necessities.</p>
+        <p>None of this is for lack of talent or care. Great work is being done, and has long been done, by dedicated builders, designers, financiers, and civic leaders. The trouble is structural: projects are financed one at a time, teams disband when the job ends, and hard-won lessons rarely get the chance to carry from one place to the next. It is why construction productivity has barely moved in decades while nearly everything else compounded. The people are good. The structure makes their best work hard to repeat.</p>
+        <p>And the demand is already here. Most Americans say they would pay more to live in a walkable neighborhood, and far too few are built. That is not a demand problem. It is a supply problem, and it can be solved by doing what the best already do: faster, better, for less, and at scale.</p>
+      </div>
+
+      <div class="my-12 rule-thin"></div>
+
+      <h2 class="font-display text-2xl text-forest-700 md:text-3xl">How</h2>
+      <div class="prose-body mt-6">
+        <p>Little of what follows needed inventing. The technologies and tools already exist, and most people are rightly impatient that they remain so rarely deployed. Our work is not invention. It is integration: pull the pieces together into one product, get it financed, get it built, and stay to help it grow.</p>
+        <p>What follows is a plan being run, not a finished machine. The layers are in different stages: some working today, some being assembled, some still ahead. A neighborhood designed as a whole and delivered in phases, in four layers engineered together:</p>
+        <p><strong>Regenerative placemaking.</strong> Every place is a living system: land, water, people, culture, and history, already becoming something. We begin by learning that story, then design so the neighborhood adds life to it, and so the people who live there gain the capacity to keep it thriving. The measure is not less harm. It is a place, and a community, more alive every year.</p>
+        <p><strong>Green infrastructure.</strong> A neighborhood has a metabolism: energy, water, nutrients, and materials flowing through it. We are designing that metabolism at the district scale, where the loops can close: energy made and stored locally, water cycled instead of discarded, soil and canopy sharing the work of pipes and air conditioners. Unlike pavement, living infrastructure can gain value as it matures: trees cool more, soils hold more, habitat fills in.</p>
+        <p><strong>Industrialized construction.</strong> Homes are among the last major products still made largely by hand, on site, one at a time. Factory building has been tried before, and the last wave taught a hard lesson: it fails on demand, not technology, because factories starve on one-off projects. Our strategy runs demand first: standardize one design, aggregate orders for it across our own districts and our partners', and bring that volume to factories that already exist. Sweden has proven the sequence at national scale, months faster and meaningfully cheaper, and repetition buys the precision that makes deep health and energy performance attainable. This is the nut we are organized around cracking.</p>
+        <p><strong>Innovative finance.</strong> Much of what is wrong with development traces to a mismatch: neighborhoods create value over decades, while the money behind them demands its exit in years. We are building capital structures that blend public purpose, patient private money, and community participation, so that each is paid in the currency it seeks, and so the value a place creates can be shared with the people who help create it.</p>
+        <p>One principle runs through all of it: demand first. The last wave of factory building failed for lack of committed orders, and most development stalls for lack of committed residents; those are the same problem. So we are learning from the best product companies: form the community before the buildings, invite future residents into the design, and let reservations and commitments lead construction the way orders came to lead production in the car business. Demand secured early softens the three hardest risks in this work at once: the factory's, the lender's, and the lease-up's.</p>
+        <p>Then two commitments that make the layers compound. Run the place with intelligence: measure how it actually performs and let each neighborhood teach the next. And stay: hold and tend what we build the way you would a garden, a business, or a family, because the role most missing from this industry is the steward who is still responsible decades after opening day.</p>
+      </div>
+
+      <div class="my-12 rule-thin"></div>
+
+      <h2 class="font-display text-2xl text-forest-700 md:text-3xl">What</h2>
+      <div class="prose-body mt-6">
+        <p>Now City Neighborhoods: complete, compact, walkable places where housing, work, food, wellness, nature, and community share the same few acres. A catalog of healthy, attainable homes inside them. An intelligence layer that helps the whole thing run well and keep improving.</p>
+        <p>A city is a network of neighborhoods, as Kent Larson puts it. We are starting with one, on a riverfront in Oregon, and the work of turning these words into streets, homes, and mornings has begun. Some of what is written here exists. Some is in motion. Some is still ahead of us.</p>
+      </div>
+
+      <div class="my-12 rule-thin"></div>
+
+      <h2 class="font-display text-2xl text-forest-700 md:text-3xl">Values</h2>
+      <div class="prose-body mt-6">
+        <p>Cultivate curiosity. Empower creativity. Be courageous. Develop diversity. Build trust. Begin regeneration.</p>
+        <p>One thing I have learned since first writing these: trust is not a soft value. It is infrastructure. It is what lets landowners, cities, builders, capital, and neighbors act like partners, and it compounds like everything else worth building.</p>
+      </div>
+
+      <div class="my-12 rule-thin"></div>
+
+      <h2 class="font-display text-2xl text-forest-700 md:text-3xl">An invitation</h2>
+      <div class="prose-body mt-6">
+        <p>If you might live in a place like this, we are designing with you, not just for you. If you hold land, lead a city, design, build, operate, or steward long-term capital, there is a seat at this table.</p>
+        <p>My grandmother apologized for the world her generation left behind. I would like to help build neighborhoods that need no apology.</p>
+        <p>Join us.</p>
+        <p><strong>Erik and the Now City team</strong></p>
+      </div>
+
+      <p class="mt-10 flex flex-wrap gap-3">
+        <a href="/#follow-along" class="btn-primary">Follow along <span aria-hidden="true">→</span></a>
+        <a href="mailto:erik@nowcitylabs.com" class="btn-outline">Write to Erik</a>
+      </p>
+    </div>
+  </article>
+
+  <SubFooter />
+</Layout>

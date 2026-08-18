@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SubNav from '../components/SubNav.astro';
+import SubFooter from '../components/SubFooter.astro';
+import { Image } from 'astro:assets';
+
+import rowhouseStreet from '../assets/pages/rowhouse-street.jpg';
+import rowhouseDusk from '../assets/pages/rowhouse-dusk.jpg';
+import chassisKit from '../assets/pages/chassis-kit.jpg';
+import interiorFamily from '../assets/pages/interior-family.jpg';
+import stairLight from '../assets/pages/stair-light.jpg';
+import blockCorner from '../assets/pages/block-corner.jpg';
+
+const description =
+  'A catalog of healthy, attainable homes: factory-precise, light-filled, efficient, and designed for the neighborhoods they sit in.';
+---
+
+<Layout title="Homes" description={description}>
+  <SubNav current="/homes" />
+
+  <section class="pt-12 md:pt-16">
+    <div class="container-wide">
+      <div class="overflow-hidden rounded-md shadow-sm">
+        <Image src={rowhouseStreet} alt="A street of warm timber rowhouses with front stoops." widths={[800, 1376]} sizes="(min-width: 1024px) 1100px, 100vw" class="h-auto w-full object-cover" loading="eager" />
+      </div>
+      <div class="mt-10 max-w-3xl">
+        <p class="eyebrow">Homes</p>
+        <h1 class="mt-4 font-display text-4xl leading-tight text-forest-700 md:text-5xl">Healthy, beautiful, attainable. Pick all three.</h1>
+        <p class="lede mt-6">A catalog of homes designed once, built with factory precision, and repeated until the price comes down and the quality goes up. That is how every other essential product got good. Homes are next.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section">
+    <div class="container-wide grid items-center gap-10 md:grid-cols-2">
+      <div class="overflow-hidden rounded-md shadow-sm"><Image src={chassisKit} alt="An exploded view of a timber home building kit: modules, windows, stairs, and panels." widths={[700, 1376]} sizes="(min-width: 768px) 50vw, 100vw" class="h-auto w-full object-cover" /></div>
+      <div>
+        <p class="eyebrow">The kit</p>
+        <h2 class="mt-3 font-display text-3xl text-forest-700">Designed once. Built like a product.</h2>
+        <p class="prose-body mt-4">Each home is a kit of healthy parts: timber structure, high-performance windows, real insulation, quiet ventilation, engineered to go together the same way every time. Repetition is what buys the precision, and precision is what makes deep comfort and low energy bills attainable instead of luxury.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section bg-cream-50">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <p class="eyebrow">Inside</p>
+        <h2 class="mt-3 font-display text-3xl text-forest-700">Light, air, quiet, warmth.</h2>
+        <p class="prose-body mt-4">Natural materials that age well. Daylight in every room. Air that is filtered and fresh, walls that keep the weather out and the quiet in. Homes engineered so that comfort is the default and the utility bill is the proof.</p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="overflow-hidden rounded-md shadow-sm"><Image src={interiorFamily} alt="A family in a light-filled timber living room." widths={[700, 1376]} sizes="(min-width: 768px) 50vw, 100vw" class="h-auto w-full object-cover" /></div>
+        <div class="overflow-hidden rounded-md shadow-sm"><Image src={stairLight} alt="A timber stairwell washed in daylight." widths={[700, 1376]} sizes="(min-width: 768px) 50vw, 100vw" class="h-auto w-full object-cover" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section">
+    <div class="container-wide grid items-center gap-10 md:grid-cols-2">
+      <div class="md:order-2 overflow-hidden rounded-md shadow-sm"><Image src={rowhouseDusk} alt="Rowhouses at dusk with warm lit windows." widths={[700, 1376]} sizes="(min-width: 768px) 50vw, 100vw" class="h-auto w-full object-cover" /></div>
+      <div class="md:order-1">
+        <p class="eyebrow">Attainable, honestly</p>
+        <h2 class="mt-3 font-display text-3xl text-forest-700">Smaller, smarter, and yours.</h2>
+        <p class="prose-body mt-4">Attainability is a design decision, not a discount. Efficient layouts that live larger than their square footage, because the neighborhood itself is part of your home: the market is your pantry, the courtyard is your second living room, the street is where your kids play. And we are building ownership paths so the people who live here can hold a piece of the place.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section bg-cream-50">
+    <div class="container-wide grid items-center gap-10 md:grid-cols-2">
+      <div class="overflow-hidden rounded-md shadow-sm"><Image src={blockCorner} alt="A neighborhood block corner with ground-floor life." widths={[700, 1376]} sizes="(min-width: 768px) 50vw, 100vw" class="h-auto w-full object-cover" /></div>
+      <div>
+        <p class="eyebrow">Demand first</p>
+        <h2 class="mt-3 font-display text-3xl text-forest-700">Tell us what you would want.</h2>
+        <p class="prose-body mt-4">We form the community before the buildings. The homes people ask for are the homes that get built first, and reservations will lead construction the way orders lead production everywhere else. Your answer on the follow-along form is not a survey. It is the order book taking shape.</p>
+        <p class="mt-6"><a href="/#follow-along" class="btn-primary">Tell us <span aria-hidden="true">→</span></a></p>
+      </div>
+    </div>
+  </section>
+
+  <SubFooter />
+</Layout>

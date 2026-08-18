@@ -1,0 +1,20 @@
+---
+const { current = '' } = Astro.props;
+const links = [
+  ['/manifesto', 'Manifesto'],
+  ['/neighborhood', 'The Neighborhood'],
+  ['/homes', 'Homes'],
+  ['/research', 'Research'],
+];
+---
+<header class="border-b border-stone-100">
+  <div class="container-wide flex flex-wrap items-center justify-between gap-4 py-5">
+    <a href="/" class="font-display text-lg font-semibold text-forest-700 no-underline">Now City <span class="text-copper-400">Neighborhoods</span></a>
+    <nav class="flex flex-wrap items-center gap-5">
+      {links.map(([href, label]) => (
+        <a href={href} class={`text-xs font-medium uppercase tracking-[0.14em] no-underline ${current === href ? 'text-forest-700' : 'text-stone-500 hover:text-copper-400'}`}>{label}</a>
+      ))}
+      <a href="/#follow-along" class="btn-primary !py-2 !px-4 text-xs">Follow along</a>
+    </nav>
+  </div>
+</header>

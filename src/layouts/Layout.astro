@@ -4,10 +4,12 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 
 const {
   title,
+  ogImage,
   description = 'Now City Neighborhoods. Places designed for the way people actually want to live, work, and gather.',
 } = Astro.props;
 
@@ -28,6 +30,7 @@ const fullTitle = title === 'Now City Neighborhoods' ? title : `${title} · Now 
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
+    {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.url).href} />}
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
