@@ -9,7 +9,17 @@ import rowhouseStreet from '../assets/pages/rowhouse-street.jpg';
 import rowhouseDusk from '../assets/pages/rowhouse-dusk.jpg';
 import streetArch from '../assets/pages/street-arch.jpg';
 import Figure from '../components/Figure.astro';
-import intBedroom1 from '../assets/pages/int-bedroom1.jpg';
+import { homePlans } from '../data/homePlans';
+import pStudioA from '../assets/plans/01-courtyard-studio-living-sleeping.jpg';
+import pStudioB from '../assets/plans/uv-studio.jpg';
+import pOneCorner from '../assets/plans/uv-balcony.jpg';
+import pLiveWork from '../assets/plans/uv-livework.jpg';
+import pTwoCorner from '../assets/plans/uv-bedroom.jpg';
+import pTwoThrough from '../assets/plans/uv-twobed.jpg';
+import pThreeFam from '../assets/plans/03-two-bed-through-family-living.jpg';
+import pColiving from '../assets/plans/04-coliving-common-kitchen.jpg';
+import pTownhome from '../assets/plans/05-courtyard-townhome-stoop.jpg';
+import uvRooftop from '../assets/plans/uv-rooftop.jpg';
 import intBedroom2 from '../assets/pages/int-bedroom2.jpg';
 import intDining from '../assets/pages/int-dining.jpg';
 import intKitchen from '../assets/pages/int-kitchen.jpg';
@@ -18,7 +28,6 @@ import intBalcony from '../assets/pages/int-balcony.jpg';
 import intKids from '../assets/pages/int-kids.jpg';
 import intColiving from '../assets/pages/int-coliving.jpg';
 import intFlex from '../assets/pages/int-flex.jpg';
-import interiorFamily from '../assets/pages/interior-family.jpg';
 import stairLight from '../assets/pages/stair-light.jpg';
 import blockCorner from '../assets/pages/block-corner.jpg';
 import towerDusk from '../assets/pages/tower-dusk.jpg';
@@ -28,6 +37,20 @@ import gardenBeds from '../assets/pages/afternoon-garden.jpg';
 
 const description =
   'A catalog of healthy, attainable homes: factory-precise, light-filled, efficient, and designed for the neighborhoods they sit in.';
+
+const planImages: Record<string, any> = {
+  'studio-courtyard': pStudioA, 'studio-alcove': pStudioB, 'one-corner': pOneCorner,
+  'one-live-work': pLiveWork, 'two-corner': pTwoCorner, 'two-through': pTwoThrough,
+  'three-family': pThreeFam, 'coliving-courtyard': pColiving, 'base-townhome': pTownhome,
+};
+const fitLabel: Record<string, string> = {
+  solo: 'Living solo', couple: 'Two of us', family: 'With kids',
+  work: 'Working from home', shared: 'Sharing with others',
+};
+const fitFilters = [
+  ['all', 'Anyone'], ['solo', 'Living solo'], ['couple', 'Two of us'], ['family', 'With kids'],
+  ['work', 'Working from home'], ['shared', 'Sharing with others'],
+];
 ---
 
 <Layout title="Homes" description={description}>
@@ -61,41 +84,67 @@ const description =
         <Figure src={intBalcony} alt="A balcony with morning coffee overlooking the courtyard." cap="Morning coffee, courtyard side." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 768px) 33vw, 100vw" />
       </div>
       <div class="mt-6 grid gap-6 md:grid-cols-3">
-        <Figure src={intBedroom1} alt="A calm bedroom with natural materials and soft light." cap="A bedroom that helps you sleep." aspect="aspect-[4/5]" widths={[500, 1124]} sizes="(min-width: 768px) 33vw, 100vw" />
         <Figure src={intDining} alt="A dining room with a wooden table and generous windows." cap="A table the day gathers around." aspect="aspect-[4/5]" widths={[500, 1330]} sizes="(min-width: 768px) 33vw, 100vw" />
         <Figure src={intBedroom2} alt="A bedroom with a person reading on the bed." cap="Quiet, by design." aspect="aspect-[4/5]" widths={[500, 1326]} sizes="(min-width: 768px) 33vw, 100vw" />
       </div>
       <div class="mt-6 grid gap-6 md:grid-cols-3">
         <Figure src={intKids} alt="A kids' bedroom with a bunk nook and window seat." cap="A room worth growing up in." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 768px) 33vw, 100vw" />
         <Figure src={intFlex} alt="A flexible room set up as a home office, ready to become a nursery." cap="The office that becomes the nursery." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 768px) 33vw, 100vw" />
-        <Figure src={interiorFamily} alt="A family in a light-filled living room." cap="Rooms that hold daily life." aspect="aspect-[3/2]" widths={[700, 1376]} sizes="(min-width: 768px) 33vw, 100vw" />
       </div>
     </div>
   </section>
 
-  <section class="py-section">
+  <section id="types" class="py-section bg-cream-50">
     <div class="container-wide">
-      <div class="grid items-center gap-10 md:grid-cols-2">
-        <div>
-          <p class="eyebrow">The Type Library</p>
-          <h2 class="mt-3 font-display text-3xl text-forest-700 md:text-4xl">Which home would fit your life?</h2>
-          <p class="prose-body mt-4">Nine home types are under study, from studios to townhomes. Tell us who is moving in and see the ones we are designing for that household, then tell us what we got wrong. The same page answers the question we hear most: how any of this stays attainable.</p>
-          <p class="mt-6"><a href="/homes/plans/" class="btn-primary">Find your fit <span aria-hidden="true">→</span></a></p>
+      <div class="max-w-3xl">
+        <p class="eyebrow">The Type Library</p>
+        <h2 class="mt-3 font-display text-3xl text-forest-700 md:text-4xl">Which home would fit your life?</h2>
+        <p class="prose-body mt-4">Nine home types are under study, from studios to townhomes. Tell us who is moving in and see the ones we are designing for that household. Then tell us what we got wrong.</p>
+      </div>
+
+      <div class="mt-8">
+        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">Who is moving in?</p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          {fitFilters.map(([value, lab]) => (
+            <button type="button" data-ffit={value} class={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${value === 'all' ? 'border-forest-700 bg-forest-700 text-cream-50' : 'border-stone-200 bg-white text-stone-600 hover:border-forest-700/40'}`}>{lab}</button>
+          ))}
         </div>
-        <div class="rounded-md border border-stone-100 bg-cream-50 p-6">
-          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">Who is moving in?</p>
-          <div class="mt-3 flex flex-wrap gap-2">
-            <span class="rounded-full border border-forest-700 bg-forest-700 px-4 py-2 text-sm font-medium text-cream-50">Living solo</span>
-            <span class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-stone-600">Two of us</span>
-            <span class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-stone-600">With kids</span>
-            <span class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-stone-600">Working from home</span>
-            <span class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-stone-600">Sharing with others</span>
-          </div>
-          <div class="mt-5 rounded border border-stone-200 bg-white p-4">
-            <p class="font-display text-forest-700">4 home types we are studying for living solo, 455 to 735 sq ft.</p>
-            <p class="mt-2 text-sm text-stone-600">Courtyard Studio · Alcove Studio · One-Bed Corner · Live / Work One-Bed</p>
-          </div>
-          <p class="mt-3 text-center text-xs text-stone-500">Study options, evolving with resident input.</p>
+        <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-stone-200 pt-4">
+          <p id="plan-readout" class="font-display text-lg text-forest-700"></p>
+          <p class="hidden text-xs text-stone-500 md:block">Scroll the row to browse →</p>
+        </div>
+      </div>
+
+      <div id="plan-rail" class="-mx-6 mt-6 flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-4 lg:mx-0 lg:px-0">
+        {homePlans.map((plan) => (
+          <article class="plan-card w-[300px] flex-none snap-start overflow-hidden rounded-md border border-stone-100 bg-white sm:w-[340px]" data-fit={plan.household.join(' ')}>
+            <Figure src={planImages[plan.id]} alt={`${plan.title} concept interior`} cap="Concept render, early design study." aspect="aspect-[4/3]" widths={[400, 800, 1536]} sizes="340px" />
+            <div class="p-5">
+              <div class="flex items-start justify-between gap-2">
+                <p class="eyebrow !text-[10px]">{plan.status}</p>
+                <span class="whitespace-nowrap rounded-full bg-cream-100 px-2 py-0.5 text-[10px] font-medium text-forest-600">{plan.type}</span>
+              </div>
+              <h3 class="mt-1 font-display text-xl text-forest-700">{plan.title}</h3>
+              <p class="mt-1 text-sm text-stone-600">{plan.areaRange} · {plan.beds} · {plan.baths}</p>
+              <p class="mt-3 text-sm leading-relaxed text-stone-700">{plan.summary}</p>
+              <div class="mt-4 flex flex-wrap gap-1.5">
+                {plan.household.map((f) => <span class="fit-chip rounded-full border border-stone-200 px-2.5 py-1 text-[11px] text-stone-600" data-fitchip={f}>{fitLabel[f]}</span>)}
+              </div>
+              <div class="mt-3 flex flex-wrap gap-1.5">
+                {plan.checks.map((check) => <span class="rounded bg-cream-100 px-2 py-1 text-[11px] font-medium text-forest-600">{check}</span>)}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p id="plan-empty" class="mt-4 hidden rounded-md border border-stone-200 bg-white p-6 text-sm text-stone-600">Nothing in the current studies matches that, which is genuinely useful for us to know. Tell us what you were looking for in the form below.</p>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <Figure src={uvRooftop} alt="A shared rooftop room opening onto a planted terrace." cap="Shared spaces count too: the rooftop room and terrace. Concept render." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} />
+        <div class="rounded-md border border-copper-400/40 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Setting expectations</p>
+          <p class="mt-2 font-display text-xl text-forest-700">No rents or availability yet.</p>
+          <p class="prose-body mt-3 !text-sm">These are study options, not listings. Sizes are planning ranges, the mix is still being decided, and your answers genuinely shape which homes get designed further. <a href="#share-fit">Tell us what fits</a>.</p>
         </div>
       </div>
     </div>
@@ -215,5 +264,181 @@ const description =
     </div>
   </section>
 
+  <section class="py-section bg-cream-50">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <p class="eyebrow">The Honest Part</p>
+        <h2 class="mt-3 font-display text-3xl text-forest-700 md:text-4xl">"This all looks expensive."</h2>
+        <div class="prose-body mt-5">
+          <p>We hear this often, and it is a fair reaction. Renderings like these usually introduce homes most people cannot afford, and plenty of projects have promised otherwise and not delivered. We share the concern, and we would rather name it than decorate around it.</p>
+          <p>So here is the honest version: attainability is not something we sprinkle on at the end. It is the hardest problem in the project, and it is the one we have organized the company around. Four things have to work together, and none of them is a slogan.</p>
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Lever one</p>
+          <h3 class="mt-1 font-display text-xl text-forest-700">Design that spends where it shows</h3>
+          <p class="prose-body mt-3 !text-[15px]">Efficient plans, simple structure, and repeated details, so the budget goes into daylight, air, quiet, and durability rather than square footage you pay for and rarely use. Smaller homes only work when they are genuinely well designed, so that is where the design effort concentrates.</p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Lever two</p>
+          <h3 class="mt-1 font-display text-xl text-forest-700">Building the same thing more than once</h3>
+          <p class="prose-body mt-3 !text-[15px]">Most homes are built as one-offs, and the industry pays for that in time, waste, and rework. Repeating a small number of well-tested home types, with as much built under a roof as makes sense, is how quality goes up while cost comes down. It works when there is committed demand, which is exactly why we are asking you now instead of later.</p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Lever three</p>
+          <h3 class="mt-1 font-display text-xl text-forest-700">The neighborhood carries some of the home</h3>
+          <p class="prose-body mt-3 !text-[15px]">A courtyard, a market, a workshop, a guest room you can book: shared things you would otherwise pay for privately, or go without. Sharing them well is what lets a modest home live much larger, and it is why we design the block and the home together.</p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Lever four</p>
+          <h3 class="mt-1 font-display text-xl text-forest-700">Patient money, and lower bills</h3>
+          <p class="prose-body mt-3 !text-[15px]">Capital that expects returns over decades rather than a quick exit changes what a home can cost. Add energy bills engineered down and a life that needs fewer car trips, and the monthly math looks different from the sticker alone. We are building the ownership structures for this in the open, and we will publish what we learn.</p>
+        </div>
+      </div>
+
+      <div class="mt-8 max-w-3xl rounded-md border border-copper-400/40 bg-white p-6">
+        <p class="prose-body !text-[15px]">What we will not do is give you a number we cannot stand behind yet. Land, financing, and construction costs are still moving, and any price quoted today would be marketing rather than information. What we can promise: a real range as soon as we have one we believe, published to this list first, along with the reasoning behind it. If we cannot make attainable work here, we would rather tell you that than quietly build something else.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="share-fit" class="py-section bg-cream-50">
+    <div class="container-narrow">
+      <p class="eyebrow">Help Shape the Home Mix</p>
+      <h2 class="mt-3 font-display text-3xl text-forest-700 md:text-4xl">Instead of choosing from available units, tell us what would actually fit your life.</h2>
+      <p class="prose-body mt-4">This is the part that matters most right now. Your answers guide which home types get designed further, and in what proportions. It takes about a minute, and it obligates you to nothing.</p>
+      <form
+        id="fit-form"
+        action="https://nowcitylabs.us19.list-manage.com/subscribe/post?u=88bfb2c8f34fdd20e85cce03f&amp;id=5812d18a23&amp;f_id=0099bbe7f0"
+        method="post"
+        target="_blank"
+        novalidate
+        class="mt-8 grid gap-5"
+      >
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label for="FNAME" class="block text-sm font-medium text-forest-800">First name <span class="text-copper-400">*</span></label>
+            <input id="FNAME" name="FNAME" type="text" required class="mt-2 w-full rounded-md border border-stone-200 bg-white px-4 py-3 text-base text-forest-800 focus:border-forest-700 focus:outline-none focus:ring-2 focus:ring-forest-700/20" />
+          </div>
+          <div>
+            <label for="EMAIL" class="block text-sm font-medium text-forest-800">Email <span class="text-copper-400">*</span></label>
+            <input id="EMAIL" name="EMAIL" type="email" required class="mt-2 w-full rounded-md border border-stone-200 bg-white px-4 py-3 text-base text-forest-800 focus:border-forest-700 focus:outline-none focus:ring-2 focus:ring-forest-700/20" />
+          </div>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label for="f-household" class="block text-sm font-medium text-forest-800">Household size</label>
+            <select id="f-household" data-pref="Household" class="mt-2 w-full rounded-md border border-stone-200 bg-white px-4 py-3 text-base text-forest-800"><option value="">Choose</option><option>Just me</option><option>Two of us</option><option>Three or four</option><option>Five or more</option><option>It varies</option></select>
+          </div>
+          <div>
+            <label for="f-type" class="block text-sm font-medium text-forest-800">Home type that fits best</label>
+            <select id="f-type" data-pref="Preferred home type" class="mt-2 w-full rounded-md border border-stone-200 bg-white px-4 py-3 text-base text-forest-800"><option value="">Choose</option><option>Studio</option><option>One-bedroom</option><option>Two-bedroom</option><option>Three-bedroom</option><option>Townhome</option><option>Co-living / shared</option><option>Not sure yet</option></select>
+          </div>
+          <div>
+            <label for="f-budget" class="block text-sm font-medium text-forest-800">Monthly housing budget comfort</label>
+            <select id="f-budget" data-pref="Budget comfort" class="mt-2 w-full rounded-md border border-stone-200 bg-white px-4 py-3 text-base text-forest-800"><option value="">Choose</option><option>Under $1,500</option><option>$1,500 to $2,000</option><option>$2,000 to $2,800</option><option>Above $2,800</option><option>Rather share later</option></select>
+          </div>
+          <div>
+            <label for="f-access" class="block text-sm font-medium text-forest-800">Accessibility needs</label>
+            <select id="f-access" data-pref="Accessibility" class="mt-2 w-full rounded-md border border-stone-200 bg-white px-4 py-3 text-base text-forest-800"><option value="">Choose</option><option>None right now</option><option>Step-free access matters</option><option>Single-level living matters</option><option>Other, in notes below</option></select>
+          </div>
+          <div>
+            <label for="f-storage" class="block text-sm font-medium text-forest-800">Storage needs</label>
+            <select id="f-storage" data-pref="Storage" class="mt-2 w-full rounded-md border border-stone-200 bg-white px-4 py-3 text-base text-forest-800"><option value="">Choose</option><option>Standard</option><option>Extra, please</option><option>Bikes and outdoor gear</option></select>
+          </div>
+          <div>
+            <label for="f-pets" class="block text-sm font-medium text-forest-800">Pets</label>
+            <select id="f-pets" data-pref="Pets" class="mt-2 w-full rounded-md border border-stone-200 bg-white px-4 py-3 text-base text-forest-800"><option value="">Choose</option><option>None</option><option>Cat(s)</option><option>Dog(s)</option><option>A few of each</option></select>
+          </div>
+          <div>
+            <label for="f-wfh" class="block text-sm font-medium text-forest-800">Work from home</label>
+            <select id="f-wfh" data-pref="Work from home" class="mt-2 w-full rounded-md border border-stone-200 bg-white px-4 py-3 text-base text-forest-800"><option value="">Choose</option><option>Most days</option><option>Sometimes</option><option>Rarely</option></select>
+          </div>
+        </div>
+        <fieldset>
+          <legend class="block text-sm font-medium text-forest-800">Shared amenities you would actually use</legend>
+          <div class="mt-3 grid gap-2 sm:grid-cols-3">
+            {['Shared kitchen and long table', 'Courtyard gardens', 'Workshop / maker space', 'Fitness and sauna', 'Guest suite to book', 'Coworking room'].map((a) => (
+              <label class="flex cursor-pointer items-center gap-2 rounded-md border border-stone-200 bg-white px-3 py-2.5 text-sm text-forest-800 hover:border-forest-700/40 has-[:checked]:border-forest-700 has-[:checked]:bg-forest-700/5"><input type="checkbox" data-prefcheck="Amenities" value={a} class="accent-forest-700" /> {a}</label>
+            ))}
+          </div>
+        </fieldset>
+        <div>
+          <label for="f-notes" class="block text-sm font-medium text-forest-800">Anything else about your fit?</label>
+          <p class="mt-1 text-xs text-stone-500">Including what you think about the cost question above. We read every one.</p>
+          <textarea id="f-notes" rows="3" class="mt-2 w-full rounded-md border border-stone-200 bg-white px-4 py-3 text-base text-forest-800"></textarea>
+        </div>
+        <input type="hidden" name="NOTES" id="NOTES" value="" />
+        <div style="position:absolute;left:-5000px" aria-hidden="true"><input type="text" name="b_88bfb2c8f34fdd20e85cce03f_5812d18a23" tabindex="-1" value="" /></div>
+        <div class="mt-2">
+          <button type="submit" class="btn-primary">Help shape the home mix</button>
+          <p class="mt-3 text-xs text-stone-500">Preference capture, never a lease or reservation. Occasional updates, unsubscribe anytime. See our <a href="/privacy" class="text-forest-700">privacy policy &amp; disclaimers</a>.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
   <SubFooter />
 </Layout>
+
+<script>
+  const state = { size: 'all', fit: 'all', sort: 'small-large' };
+  const cards = Array.from(document.querySelectorAll('.plan-card'));
+  const grid = document.getElementById('plan-rail');
+  const readout = document.getElementById('plan-readout');
+  const emptyEl = document.getElementById('plan-empty');
+  const fitWords = { all: '', solo: 'living solo', couple: 'two of you', family: 'a family', work: 'working from home', shared: 'sharing with others' };
+
+  function activate(buttons, attr, value) {
+    buttons.forEach((b) => {
+      const on = b.dataset[attr] === value;
+      b.classList.toggle('bg-forest-700', on);
+      b.classList.toggle('text-cream-50', on);
+      b.classList.toggle('border-forest-700', on);
+      b.classList.toggle('bg-white', !on);
+      b.classList.toggle('text-stone-600', !on);
+      b.classList.toggle('border-stone-200', !on);
+    });
+  }
+  const fitBtns = Array.from(document.querySelectorAll('[data-ffit]'));
+  fitBtns.forEach((b) => b.addEventListener('click', () => { state.fit = b.dataset.ffit; activate(fitBtns, 'ffit', state.fit); apply(); grid.scrollTo({ left: 0, behavior: 'smooth' }); }));
+
+  function apply() {
+    const visible = [];
+    cards.forEach((card) => {
+      const show = state.fit === 'all' || card.dataset.fit.split(' ').includes(state.fit);
+      card.style.display = show ? '' : 'none';
+      if (show) visible.push(card);
+      card.querySelectorAll('.fit-chip').forEach((chip) => {
+        const on = state.fit !== 'all' && chip.dataset.fitchip === state.fit;
+        chip.classList.toggle('border-forest-700', on);
+        chip.classList.toggle('bg-forest-700/5', on);
+        chip.classList.toggle('text-forest-700', on);
+      });
+    });
+    const n = visible.length;
+    const who = fitWords[state.fit];
+    if (n) {
+      readout.textContent = who
+        ? `${n} home ${n === 1 ? 'type' : 'types'} we are studying for ${who}.`
+        : `${n} home types under study, studios through townhomes.`;
+      emptyEl.classList.add('hidden');
+    } else {
+      readout.textContent = 'Nothing matches that combination yet.';
+      emptyEl.classList.remove('hidden');
+    }
+  }
+  apply();
+
+  document.getElementById('fit-form').addEventListener('submit', () => {
+    const parts = [];
+    document.querySelectorAll('[data-pref]').forEach((el) => { if (el.value) parts.push(`${el.dataset.pref}: ${el.value}`); });
+    const checked = Array.from(document.querySelectorAll('[data-prefcheck]:checked')).map((el) => el.value);
+    if (checked.length) parts.push(`Amenities: ${checked.join(', ')}`);
+    const notes = document.getElementById('f-notes').value.trim();
+    if (notes) parts.push(`Notes: ${notes}`);
+    document.getElementById('NOTES').value = `[Home types fit] ${parts.join(' | ')}`;
+  });
+</script>
