@@ -8,6 +8,12 @@ import { Image } from 'astro:assets';
 import heroAerial from '../assets/deck/hero-aerial.jpg';
 import section2Bedroom from '../assets/deck/section2-bedroom.jpg';
 import section3Garden from '../assets/deck/section3-garden.jpg';
+import regHero from '../assets/pages/reg-hero.jpg';
+import regWellbeing from '../assets/pages/reg-wellbeing.jpg';
+import regCommunity from '../assets/pages/reg-community.jpg';
+import regNature from '../assets/pages/reg-nature.jpg';
+import regFamily from '../assets/pages/reg-family.jpg';
+import regDailylife from '../assets/pages/reg-dailylife.jpg';
 import section5Bedroom from '../assets/deck/section5-sanctuary-bedroom.jpg';
 import section5Dining from '../assets/deck/section5-sanctuary-dining.jpg';
 import section6Landscape from '../assets/deck/section6-pnw-landscape.jpg';
@@ -108,17 +114,20 @@ const description =
 
       <div class="mt-12 overflow-hidden rounded-md shadow-sm">
         <Image
-          src={section3Garden}
-          alt="A community garden with raised beds, residents tending vegetables, framed by neighborhood buildings on either side."
-          widths={[1000, 1500, 2000]}
+          src={regHero}
+          alt="A walkable courtyard neighborhood with shaded paths, stormwater planting, balconies, green roofs, and residents moving through daily routines."
+          widths={[1000, 1500, 1536]}
           sizes="(min-width: 1024px) 1100px, 100vw"
           class="h-auto w-full object-cover"
         />
       </div>
 
-      <ol class="mt-16 grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+      <ol class="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
         <li>
-          <div class="h-px w-10 bg-copper-400" aria-hidden="true"></div>
+          <div class="overflow-hidden rounded-md shadow-sm">
+            <Image src={regWellbeing} alt="A shaded courtyard path with benches, planting, and residents of different ages walking and resting." widths={[500, 900, 1536]} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" class="aspect-[3/2] h-auto w-full object-cover" />
+          </div>
+          <div class="mt-5 h-px w-10 bg-copper-400" aria-hidden="true"></div>
           <p class="eyebrow mt-4">01 / Well-Being</p>
           <p class="prose-body mt-3">
             Biophilic streetscapes, shaded walking paths, green plazas,
@@ -127,7 +136,10 @@ const description =
           </p>
         </li>
         <li>
-          <div class="h-px w-10 bg-copper-400" aria-hidden="true"></div>
+          <div class="overflow-hidden rounded-md shadow-sm">
+            <Image src={regCommunity} alt="A warm shared common room with a long table opening onto a planted residential courtyard." widths={[500, 900, 1536]} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" class="aspect-[3/2] h-auto w-full object-cover" />
+          </div>
+          <div class="mt-5 h-px w-10 bg-copper-400" aria-hidden="true"></div>
           <p class="eyebrow mt-4">02 / Community</p>
           <p class="prose-body mt-3">
             A daily civic marketplace at the heart. Long tables, fire
@@ -135,7 +147,10 @@ const description =
           </p>
         </li>
         <li>
-          <div class="h-px w-10 bg-copper-400" aria-hidden="true"></div>
+          <div class="overflow-hidden rounded-md shadow-sm">
+            <Image src={regNature} alt="A planted courtyard rain garden with paths, trees, balconies, and residents observing the landscape." widths={[500, 900, 1536]} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" class="aspect-[3/2] h-auto w-full object-cover" />
+          </div>
+          <div class="mt-5 h-px w-10 bg-copper-400" aria-hidden="true"></div>
           <p class="eyebrow mt-4">03 / Nature</p>
           <p class="prose-body mt-3">
             Landscape as living infrastructure: cooling, stormwater
@@ -144,7 +159,10 @@ const description =
           </p>
         </li>
         <li>
-          <div class="h-px w-10 bg-copper-400" aria-hidden="true"></div>
+          <div class="overflow-hidden rounded-md shadow-sm">
+            <Image src={regFamily} alt="Children playing on natural timber play equipment beside a car-light residential promenade." widths={[500, 900, 1536]} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" class="aspect-[3/2] h-auto w-full object-cover" />
+          </div>
+          <div class="mt-5 h-px w-10 bg-copper-400" aria-hidden="true"></div>
           <p class="eyebrow mt-4">04 / Family</p>
           <p class="prose-body mt-3">
             Child-centered public realms with safe mobility, nature-based
@@ -153,7 +171,10 @@ const description =
           </p>
         </li>
         <li>
-          <div class="h-px w-10 bg-copper-400" aria-hidden="true"></div>
+          <div class="overflow-hidden rounded-md shadow-sm">
+            <Image src={regDailylife} alt="A ground-floor neighborhood promenade with cafe doors open, produce, bikes, package lockers, and residents passing through." widths={[500, 900, 1536]} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" class="aspect-[3/2] h-auto w-full object-cover" />
+          </div>
+          <div class="mt-5 h-px w-10 bg-copper-400" aria-hidden="true"></div>
           <p class="eyebrow mt-4">05 / Daily Life</p>
           <p class="prose-body mt-3">
             Morning: coffee, bakery, produce. Midday: lunch and casual
