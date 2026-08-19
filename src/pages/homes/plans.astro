@@ -2,7 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 import SubNav from '../../components/SubNav.astro';
 import SubFooter from '../../components/SubFooter.astro';
-import ConceptPlanSvg from '../../components/ConceptPlanSvg.astro';
 import Figure from '../../components/Figure.astro';
 import { homePlans } from '../../data/homePlans';
 
@@ -13,18 +12,27 @@ import rColiving from '../../assets/plans/04-coliving-common-kitchen.jpg';
 import rTownhome from '../../assets/plans/05-courtyard-townhome-stoop.jpg';
 
 const description =
-  'An illustrative home type library for a walkable courtyard block: pre-development design studies, open to your input. No rents or availability yet.';
+  'A home type library for a walkable courtyard block: pre-development study options, open to your input. No rents or availability yet.';
 
 const sizeFilters = [
   ['all', 'All homes'], ['studio', 'Studios'], ['one-bed', '1 bed'], ['two-bed', '2 bed'],
   ['three-bed', '3 bed'], ['shared', 'Shared'], ['townhome', 'Townhome'],
 ];
 const fitFilters = [
-  ['all', 'Any household'], ['solo', 'Solo'], ['couple', 'Couple'], ['family', 'Family'],
-  ['work', 'Work-from-home'], ['shared', 'Shared living'],
+  ['all', 'Anyone'], ['solo', 'Living solo'], ['couple', 'Two of us'], ['family', 'With kids'],
+  ['work', 'Working from home'], ['shared', 'Sharing with others'],
 ];
 const bedWeight = (size: string) =>
   size === 'studio' ? 0 : size === 'one-bed' ? 1 : size === 'two-bed' ? 2 : size === 'three-bed' ? 3 : size === 'shared' ? 4 : 5;
+
+const minArea = Math.min(...homePlans.map((p) => p.areaSqFt));
+const maxArea = Math.max(...homePlans.map((p) => p.areaSqFt));
+const pct = (a: number) => Math.round(((a - minArea) / (maxArea - minArea)) * 100);
+
+const fitLabel: Record<string, string> = {
+  solo: 'Living solo', couple: 'Two of us', family: 'With kids',
+  work: 'Working from home', shared: 'Sharing with others',
+};
 
 const renders = [
   { img: rStudio, cap: 'The Courtyard Studio, as it could feel. Concept render, early design study.' },
@@ -35,99 +43,136 @@ const renders = [
 ];
 ---
 
-<Layout title="Illustrative Home Plans" description={description}>
+<Layout title="Home Types" description={description}>
   <SubNav current="/homes" />
 
   <section class="pt-12 md:pt-16">
     <div class="container-wide grid items-start gap-8 lg:grid-cols-[1.5fr_1fr]">
       <div>
-        <p class="eyebrow">Homes · The Plan Library</p>
-        <h1 class="mt-4 font-display text-4xl leading-tight text-forest-700 md:text-5xl">Illustrative home plans for a walkable courtyard block.</h1>
-        <p class="lede mt-6">A pre-development home type library: transparent about what is still evolving, specific enough to show how light, storage, flexibility, and shared landings shape each home.</p>
+        <p class="eyebrow">Homes · The Type Library</p>
+        <h1 class="mt-4 font-display text-4xl leading-tight text-forest-700 md:text-5xl">Which home would fit your life?</h1>
+        <p class="lede mt-6">Tell us who is moving in and what matters, and we will show the home types we are studying for them. Then tell us what we got wrong.</p>
       </div>
       <aside class="rounded-md border border-copper-400/40 bg-white p-6" aria-label="Project status">
-        <p class="eyebrow !text-[10px]">Pre-development status</p>
+        <p class="eyebrow !text-[10px]">Setting expectations</p>
         <p class="mt-2 font-display text-xl text-forest-700">No rents or availability yet.</p>
-        <p class="prose-body mt-3 !text-sm">These plans are design studies. They help future residents compare home types and tell us what would fit their lives. Everything here can change, and your input is part of how it changes.</p>
+        <p class="prose-body mt-3 !text-sm">These are study options, not listings. Sizes are planning ranges, the mix is still being decided, and your answers genuinely shape which homes get designed further.</p>
       </aside>
     </div>
   </section>
 
-  <section class="py-10">
-    <div class="container-wide grid gap-4 md:grid-cols-3">
-      <div class="rounded-md border border-stone-100 bg-cream-50 p-5"><p class="font-display text-forest-700">Daylight first</p><p class="mt-1 text-sm text-stone-600">Habitable rooms face the courtyard, street, or corner.</p></div>
-      <div class="rounded-md border border-stone-100 bg-cream-50 p-5"><p class="font-display text-forest-700">Courtyard urbanism</p><p class="mt-1 text-sm text-stone-600">Plans assume shared gardens, short landings, and useful thresholds.</p></div>
-      <div class="rounded-md border border-stone-100 bg-cream-50 p-5"><p class="font-display text-forest-700">Illustrative, always</p><p class="mt-1 text-sm text-stone-600">Areas are planning ranges, and nothing here is final inventory.</p></div>
+  <section class="py-section">
+    <div class="container-wide">
+      <div class="rounded-md border border-stone-100 bg-cream-50 p-6 md:p-8">
+        <p class="eyebrow !text-[10px]">Start here</p>
+        <h2 class="mt-2 font-display text-2xl text-forest-700">Who is moving in?</h2>
+        <div class="mt-4 flex flex-wrap gap-2">
+          {fitFilters.map(([value, lab]) => (
+            <button type="button" data-ffit={value} class={`plan-filter rounded-full border px-4 py-2 text-sm font-medium transition-colors ${value === 'all' ? 'border-forest-700 bg-forest-700 text-cream-50' : 'border-stone-200 bg-white text-stone-600 hover:border-forest-700/40'}`}>{lab}</button>
+          ))}
+        </div>
+
+        <p class="mt-7 text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">Narrow by size, if you like</p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          {sizeFilters.map(([value, lab]) => (
+            <button type="button" data-fsize={value} class={`plan-filter rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors ${value === 'all' ? 'border-forest-700 bg-forest-700 text-cream-50' : 'border-stone-200 bg-white text-stone-600 hover:border-forest-700/40'}`}>{lab}</button>
+          ))}
+        </div>
+
+        <div class="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-stone-200 pt-5">
+          <p id="plan-readout" class="font-display text-lg text-forest-700"></p>
+          <label class="text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">Sort
+            <select id="plan-sort" class="ml-2 rounded-md border border-stone-200 bg-white px-3 py-2 text-sm font-normal normal-case tracking-normal text-forest-800">
+              <option value="small-large">Smallest first</option>
+              <option value="large-small">Largest first</option>
+              <option value="bedrooms">By bedrooms</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div id="plan-grid" class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {homePlans.map((plan) => (
+          <article
+            class="plan-card flex flex-col rounded-md border border-stone-100 bg-white p-6"
+            data-size={plan.size}
+            data-fit={plan.household.join(' ')}
+            data-area={plan.areaSqFt}
+            data-bedweight={bedWeight(plan.size)}
+          >
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <p class="eyebrow !text-[10px]">{plan.status}</p>
+                <h3 class="mt-1 font-display text-xl text-forest-700">{plan.title}</h3>
+              </div>
+              <span class="whitespace-nowrap rounded-full bg-cream-100 px-2.5 py-1 text-[11px] font-medium text-forest-600">{plan.type}</span>
+            </div>
+
+            <div class="mt-4">
+              <div class="flex items-baseline justify-between text-[11px] uppercase tracking-[0.1em] text-stone-500">
+                <span>Compact</span><span>Roomy</span>
+              </div>
+              <div class="mt-1.5 h-1.5 w-full rounded-full bg-cream-200">
+                <div class="h-1.5 rounded-full bg-sage-300" style={`width:${Math.max(pct(plan.areaSqFt), 6)}%`}></div>
+              </div>
+              <p class="mt-2 text-sm text-stone-600">{plan.areaRange} · {plan.beds} · {plan.baths}</p>
+            </div>
+
+            <p class="mt-4 text-sm leading-relaxed text-stone-700">{plan.summary}</p>
+
+            <div class="mt-4">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.1em] text-stone-500">Studied for</p>
+              <div class="mt-2 flex flex-wrap gap-1.5">
+                {plan.household.map((f) => <span class="fit-chip rounded-full border border-stone-200 px-2.5 py-1 text-[11px] text-stone-600" data-fitchip={f}>{fitLabel[f]}</span>)}
+              </div>
+            </div>
+
+            <div class="mt-auto flex flex-wrap gap-1.5 pt-4">
+              {plan.checks.map((check) => <span class="rounded bg-cream-100 px-2 py-1 text-[11px] font-medium text-forest-600">{check}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+      <p id="plan-empty" class="mt-6 hidden rounded-md border border-stone-200 bg-white p-6 text-sm text-stone-600">Nothing in the current studies matches that combination, which is genuinely useful for us to know. Tell us what you were looking for in the form below.</p>
     </div>
   </section>
 
   <section class="py-section bg-cream-50">
-    <div class="container-wide grid items-start gap-10 lg:grid-cols-[240px_1fr]">
-      <aside class="lg:sticky lg:top-6" aria-label="Home plan filters">
-        <p class="eyebrow !text-[10px]">Refine home types</p>
-        <div class="mt-4">
-          <p class="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Home size</p>
-          <div class="mt-2 flex flex-wrap gap-2">
-            {sizeFilters.map(([value, lab]) => (
-              <button type="button" data-fsize={value} class={`plan-filter rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${value === 'all' ? 'border-forest-700 bg-forest-700 text-cream-50' : 'border-stone-200 bg-white text-stone-600 hover:border-forest-700/40'}`}>{lab}</button>
-            ))}
-          </div>
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <p class="eyebrow">The Honest Part</p>
+        <h2 class="mt-3 font-display text-3xl text-forest-700 md:text-4xl">"This all looks expensive."</h2>
+        <div class="prose-body mt-5">
+          <p>We hear this often, and it is a fair reaction. Renderings like these usually introduce homes most people cannot afford, and plenty of projects have promised otherwise and not delivered. We share the concern, and we would rather name it than decorate around it.</p>
+          <p>So here is the honest version: attainability is not something we sprinkle on at the end. It is the hardest problem in the project, and it is the one we have organized the company around. Four things have to work together, and none of them is a slogan.</p>
         </div>
-        <div class="mt-5">
-          <p class="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Household fit</p>
-          <div class="mt-2 flex flex-wrap gap-2">
-            {fitFilters.map(([value, lab]) => (
-              <button type="button" data-ffit={value} class={`plan-filter rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${value === 'all' ? 'border-forest-700 bg-forest-700 text-cream-50' : 'border-stone-200 bg-white text-stone-600 hover:border-forest-700/40'}`}>{lab}</button>
-            ))}
-          </div>
-        </div>
-        <label class="mt-5 block text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Sort
-          <select id="plan-sort" class="mt-2 w-full rounded-md border border-stone-200 bg-white px-3 py-2 text-sm font-normal normal-case tracking-normal text-forest-800">
-            <option value="small-large">Area: small to large</option>
-            <option value="large-small">Area: large to small</option>
-            <option value="bedrooms">Bedrooms</option>
-          </select>
-        </label>
-      </aside>
+      </div>
 
-      <div>
-        <div class="flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <p class="eyebrow !text-[10px]">Home type library</p>
-            <h2 class="mt-1 font-display text-2xl text-forest-700"><span id="plan-count">{homePlans.length}</span> illustrative plans</h2>
-          </div>
-          <p id="plan-range" class="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs text-stone-600"></p>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Lever one</p>
+          <h3 class="mt-1 font-display text-xl text-forest-700">Design that spends where it shows</h3>
+          <p class="prose-body mt-3 !text-[15px]">Efficient plans, simple structure, and repeated details, so the budget goes into daylight, air, quiet, and durability rather than square footage you pay for and rarely use. Smaller homes only work when they are genuinely well designed, so that is where the design effort concentrates.</p>
         </div>
-        <div id="plan-grid" class="mt-6 grid gap-6 md:grid-cols-2">
-          {homePlans.map((plan) => (
-            <article
-              class="plan-card flex flex-col rounded-md border border-stone-100 bg-white"
-              data-size={plan.size}
-              data-fit={plan.household.join(' ')}
-              data-area={plan.areaSqFt}
-              data-bedweight={bedWeight(plan.size)}
-            >
-              <div class="rounded-t-md border-b border-stone-100 bg-[#FBFAF6] p-4">
-                <ConceptPlanSvg plan={plan} />
-              </div>
-              <div class="flex flex-1 flex-col p-5">
-                <p class="eyebrow !text-[10px]">{plan.status}</p>
-                <h3 class="mt-1 font-display text-xl text-forest-700">{plan.title}</h3>
-                <p class="mt-2 text-sm leading-relaxed text-stone-700">{plan.summary}</p>
-                <div class="mt-3 flex flex-wrap gap-2 text-xs">
-                  <span class="rounded-full border border-stone-200 px-2.5 py-1 text-stone-600">{plan.beds}</span>
-                  <span class="rounded-full border border-stone-200 px-2.5 py-1 text-stone-600">{plan.baths}</span>
-                  <span class="rounded-full border border-stone-200 px-2.5 py-1 text-stone-600">{plan.areaRange}</span>
-                </div>
-                <p class="mt-3 text-[13px] leading-relaxed text-stone-500">{plan.rationale}</p>
-                <div class="mt-auto flex flex-wrap gap-1.5 pt-3">
-                  {plan.checks.map((check) => <span class="rounded bg-cream-100 px-2 py-1 text-[11px] font-medium text-forest-600">{check}</span>)}
-                </div>
-              </div>
-            </article>
-          ))}
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Lever two</p>
+          <h3 class="mt-1 font-display text-xl text-forest-700">Building the same thing more than once</h3>
+          <p class="prose-body mt-3 !text-[15px]">Most homes are built as one-offs, and the industry pays for that in time, waste, and rework. Repeating a small number of well-tested home types, with as much built under a roof as makes sense, is how quality goes up while cost comes down. It works when there is committed demand, which is exactly why we are asking you now instead of later.</p>
         </div>
-        <p id="plan-empty" class="mt-6 hidden rounded-md border border-stone-200 bg-white p-6 text-sm text-stone-600">No study options match that combination yet, which is useful for us to know. Tell us what you were looking for in the form below.</p>
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Lever three</p>
+          <h3 class="mt-1 font-display text-xl text-forest-700">The neighborhood carries some of the home</h3>
+          <p class="prose-body mt-3 !text-[15px]">A courtyard, a market, a workshop, a guest room you can book: shared things you would otherwise pay for privately, or go without. Sharing them well is what lets a modest home live much larger, and it is why we design the block and the home together.</p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Lever four</p>
+          <h3 class="mt-1 font-display text-xl text-forest-700">Patient money, and lower bills</h3>
+          <p class="prose-body mt-3 !text-[15px]">Capital that expects returns over decades rather than a quick exit changes what a home can cost. Add energy bills engineered down and a life that needs fewer car trips, and the monthly math looks different from the sticker alone. We are building the ownership structures for this in the open, and we will publish what we learn.</p>
+        </div>
+      </div>
+
+      <div class="mt-8 max-w-3xl rounded-md border border-copper-400/40 bg-white p-6">
+        <p class="prose-body !text-[15px]">What we will not do is give you a number we cannot stand behind yet. Land, financing, and construction costs are still moving, and any price quoted today would be marketing rather than information. What we can promise: a real range as soon as we have one we believe, published to this list first, along with the reasoning behind it. If we cannot make attainable work here, we would rather tell you that than quietly build something else.</p>
       </div>
     </div>
   </section>
@@ -137,6 +182,7 @@ const renders = [
       <div class="max-w-3xl">
         <p class="eyebrow">How They Could Feel</p>
         <h2 class="mt-3 font-display text-3xl text-forest-700">Concept renders for five of the studies.</h2>
+        <p class="prose-body mt-4">Early design studies, not final designs. The materials shown are chosen for how they age and perform, and every one of them is still under review for cost as well as quality.</p>
       </div>
       <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {renders.map(({ img, cap }) => (
@@ -209,6 +255,7 @@ const renders = [
         </fieldset>
         <div>
           <label for="f-notes" class="block text-sm font-medium text-forest-800">Anything else about your fit?</label>
+          <p class="mt-1 text-xs text-stone-500">Including what you think about the cost question above. We read every one.</p>
           <textarea id="f-notes" rows="3" class="mt-2 w-full rounded-md border border-stone-200 bg-white px-4 py-3 text-base text-forest-800"></textarea>
         </div>
         <input type="hidden" name="NOTES" id="NOTES" value="" />
@@ -228,9 +275,9 @@ const renders = [
   const state = { size: 'all', fit: 'all', sort: 'small-large' };
   const cards = Array.from(document.querySelectorAll('.plan-card'));
   const grid = document.getElementById('plan-grid');
-  const countEl = document.getElementById('plan-count');
-  const rangeEl = document.getElementById('plan-range');
+  const readout = document.getElementById('plan-readout');
   const emptyEl = document.getElementById('plan-empty');
+  const fitWords = { all: '', solo: 'living solo', couple: 'two of you', family: 'a family', work: 'working from home', shared: 'sharing with others' };
 
   function activate(buttons, attr, value) {
     buttons.forEach((b) => {
@@ -257,6 +304,12 @@ const renders = [
       const show = sizeOk && fitOk;
       card.style.display = show ? '' : 'none';
       if (show) visible.push(card);
+      card.querySelectorAll('.fit-chip').forEach((chip) => {
+        const on = state.fit !== 'all' && chip.dataset.fitchip === state.fit;
+        chip.classList.toggle('border-forest-700', on);
+        chip.classList.toggle('bg-forest-700/5', on);
+        chip.classList.toggle('text-forest-700', on);
+      });
     });
     visible.sort((a, b) => {
       if (state.sort === 'large-small') return +b.dataset.area - +a.dataset.area;
@@ -264,14 +317,18 @@ const renders = [
       return +a.dataset.area - +b.dataset.area;
     });
     visible.forEach((card) => grid.appendChild(card));
-    countEl.textContent = String(visible.length);
-    if (visible.length) {
+
+    const n = visible.length;
+    const who = fitWords[state.fit];
+    if (n) {
       const areas = visible.map((c) => +c.dataset.area);
-      rangeEl.textContent = `${Math.min(...areas)}-${Math.max(...areas)} sq ft, planning ranges`;
-      rangeEl.style.display = '';
+      const range = `${Math.min(...areas)} to ${Math.max(...areas)} sq ft`;
+      readout.textContent = who
+        ? `${n} home ${n === 1 ? 'type' : 'types'} we are studying for ${who}, ${range}.`
+        : `${n} home ${n === 1 ? 'type' : 'types'} under study, ${range}.`;
       emptyEl.classList.add('hidden');
     } else {
-      rangeEl.style.display = 'none';
+      readout.textContent = 'Nothing matches that combination yet.';
       emptyEl.classList.remove('hidden');
     }
   }
@@ -284,6 +341,6 @@ const renders = [
     if (checked.length) parts.push(`Amenities: ${checked.join(', ')}`);
     const notes = document.getElementById('f-notes').value.trim();
     if (notes) parts.push(`Notes: ${notes}`);
-    document.getElementById('NOTES').value = `[Home plans fit] ${parts.join(' | ')}`;
+    document.getElementById('NOTES').value = `[Home types fit] ${parts.join(' | ')}`;
   });
 </script>
