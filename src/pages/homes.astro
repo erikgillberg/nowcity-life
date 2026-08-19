@@ -77,20 +77,15 @@ const fitFilters = [
       <div class="max-w-3xl">
         <p class="eyebrow">Inside</p>
         <h2 class="mt-3 font-display text-3xl text-forest-700">Light, air, quiet, warmth.</h2>
-        <p class="prose-body mt-4">Natural materials that age well. Daylight in every room. Air that is filtered and fresh, walls that keep the weather out and the quiet in. Concept interiors from the current design work:</p>
+        <p class="prose-body mt-4">Concept interiors from the current design work. Different rooms, one consistent set of decisions.</p>
       </div>
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
-        <Figure src={intKitchen} alt="A parent and child cooking in a daylight-filled kitchen." cap="A kitchen the day starts in." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 768px) 33vw, 100vw" />
-        <Figure src={intBath} alt="A calm bathroom in warm stone and wood." cap="Calm, in warm stone and wood." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 768px) 33vw, 100vw" />
-        <Figure src={intBalcony} alt="A balcony with morning coffee overlooking the courtyard." cap="Morning coffee, courtyard side." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 768px) 33vw, 100vw" />
-      </div>
-      <div class="mt-6 grid gap-6 md:grid-cols-3">
-        <Figure src={intDining} alt="A dining room with a wooden table and generous windows." cap="A table the day gathers around." aspect="aspect-[4/5]" widths={[500, 1330]} sizes="(min-width: 768px) 33vw, 100vw" />
-        <Figure src={intBedroom2} alt="A bedroom with a person reading on the bed." cap="Quiet, by design." aspect="aspect-[4/5]" widths={[500, 1326]} sizes="(min-width: 768px) 33vw, 100vw" />
-      </div>
-      <div class="mt-6 grid gap-6 md:grid-cols-3">
-        <Figure src={intKids} alt="A kids' bedroom with a bunk nook and window seat." cap="A room worth growing up in." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 768px) 33vw, 100vw" />
-        <Figure src={intFlex} alt="A flexible room set up as a home office, ready to become a nursery." cap="The office that becomes the nursery." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 768px) 33vw, 100vw" />
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <Figure src={intKitchen} alt="A parent and child cooking in a daylight-filled kitchen." cap="A kitchen the day starts in." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+        <Figure src={intBalcony} alt="A balcony with morning coffee overlooking the courtyard." cap="Morning coffee, courtyard side." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+        <Figure src={intDining} alt="A dining room with a wooden table and generous windows." cap="A table the day gathers around." aspect="aspect-[3/2]" widths={[500, 1330]} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+        <Figure src={intBedroom2} alt="A bedroom with a person reading on the bed." cap="Quiet, by design." aspect="aspect-[3/2]" widths={[500, 1326]} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+        <Figure src={intKids} alt="A kids' bedroom with a bunk nook and window seat." cap="A room worth growing up in." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+        <Figure src={intFlex} alt="A flexible room set up as a home office, ready to become a nursery." cap="The office that becomes the nursery." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
       </div>
     </div>
   </section>
@@ -147,21 +142,85 @@ const fitFilters = [
     </div>
   </section>
 
-  <section class="py-section bg-cream-50">
+  <section id="design-system" class="py-section">
     <div class="container-wide">
       <div class="max-w-3xl">
         <p class="eyebrow">The Design System</p>
-        <h2 class="mt-3 font-display text-3xl text-forest-700">Every home, whatever its shape, gets the same promises.</h2>
+        <h2 class="mt-3 font-display text-3xl text-forest-700 md:text-4xl">Why the homes look the way they look.</h2>
+        <p class="prose-body mt-4">Those rooms are not styled to a mood board. Every choice in them is doing a job: making a modest home feel generous, holding up for decades, and keeping the budget in the places you can feel. Here is the system underneath.</p>
       </div>
-      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="rounded-md border border-stone-100 bg-white p-6"><h3 class="font-display text-lg text-forest-700">Daylight in every room</h3><p class="prose-body mt-2 !text-[15px]">Homes shaped around the sun, with real light where you cook, work, and wake.</p></div>
-        <div class="rounded-md border border-stone-100 bg-white p-6"><h3 class="font-display text-lg text-forest-700">Quiet by construction</h3><p class="prose-body mt-2 !text-[15px]">Walls and floors built so your home sounds like yours, even in the middle of a lively block.</p></div>
-        <div class="rounded-md border border-stone-100 bg-white p-6"><h3 class="font-display text-lg text-forest-700">Healthy air and materials</h3><p class="prose-body mt-2 !text-[15px]">Fresh, filtered air and materials chosen for your health and how gracefully they age.</p></div>
-        <div class="rounded-md border border-stone-100 bg-white p-6"><h3 class="font-display text-lg text-forest-700">Rooms that flex</h3><p class="prose-body mt-2 !text-[15px]">Layouts that adapt as life changes: the office becomes the nursery becomes the studio.</p></div>
-        <div class="rounded-md border border-stone-100 bg-white p-6"><h3 class="font-display text-lg text-forest-700">Storage designed in</h3><p class="prose-body mt-2 !text-[15px]">Compact only works when everything has a place. We design the places first.</p></div>
-        <div class="rounded-md border border-stone-100 bg-white p-6"><h3 class="font-display text-lg text-forest-700">Bills as proof</h3><p class="prose-body mt-2 !text-[15px]">Comfort engineered in, so the energy bill reads like a receipt for good design.</p></div>
+
+      <div class="mt-10 rounded-md border border-stone-100 bg-cream-50 p-6 md:p-8">
+        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">The palette, and what each part is for</p>
+        <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          <div>
+            <div class="h-16 w-full rounded" style="background:#EFE7DA"></div>
+            <p class="mt-2 font-display text-forest-700">Cream plaster</p>
+            <p class="mt-1 text-[13px] leading-relaxed text-stone-600">Walls that bounce daylight deep into the room, so one window lights a whole home.</p>
+          </div>
+          <div>
+            <div class="h-16 w-full rounded" style="background:#D8BE96"></div>
+            <p class="mt-2 font-display text-forest-700">Pale timber</p>
+            <p class="mt-1 text-[13px] leading-relaxed text-stone-600">Floors, frames, and exposed beams. Warm underfoot, quiet to walk on, and it earns character as it wears.</p>
+          </div>
+          <div>
+            <div class="h-16 w-full rounded" style="background:#A6B8A4"></div>
+            <p class="mt-2 font-display text-forest-700">Muted sage</p>
+            <p class="mt-1 text-[13px] leading-relaxed text-stone-600">Cabinetry and built-in storage, pitched to read as part of the architecture rather than furniture you had to buy.</p>
+          </div>
+          <div>
+            <div class="h-16 w-full rounded" style="background:#B87333"></div>
+            <p class="mt-2 font-display text-forest-700">Terracotta accents</p>
+            <p class="mt-1 text-[13px] leading-relaxed text-stone-600">Used sparingly, at the human scale: a pot, a throw, a tile. Warmth without a paint job you have to live with forever.</p>
+          </div>
+          <div>
+            <div class="h-16 w-full rounded" style="background:#E7E0D0"></div>
+            <p class="mt-2 font-display text-forest-700">Linen and oatmeal</p>
+            <p class="mt-1 text-[13px] leading-relaxed text-stone-600">Soft surfaces that absorb sound and diffuse glare, which is most of what makes a room feel calm.</p>
+          </div>
+        </div>
+        <p class="mt-6 text-xs text-stone-500">A quiet backdrop is deliberate. The home should be the setting; your things, your people, and the green outside supply the color.</p>
       </div>
-      <p class="prose-body mt-8 max-w-3xl">How the homes get built this well at honest prices is its own story: it lives on <a href="/how-we-build">How We Build</a>. And we are building custom home designer tools so you can shape your own; the notes field below is where that conversation starts.</p>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Rule one</p>
+          <h3 class="mt-1 font-display text-xl text-forest-700">Daylight sets the plan, not the decor</h3>
+          <p class="prose-body mt-3 !text-[15px]">Rooms people live in go on the window wall; bathrooms, storage, and circulation take the dark middle. Windows run tall and reach close to the ceiling, because the top of a window throws light furthest into a room. It is why these homes feel bigger than their square footage.</p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Rule two</p>
+          <h3 class="mt-1 font-display text-xl text-forest-700">Show the structure, skip the wrapping</h3>
+          <p class="prose-body mt-3 !text-[15px]">Exposed beams and honest surfaces are not only a look. Every layer of trim, soffit, and applied finish is money spent hiding the building from you. Leaving good structure visible costs less and ages better than covering mediocre structure up.</p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Rule three</p>
+          <h3 class="mt-1 font-display text-xl text-forest-700">Storage is architecture</h3>
+          <p class="prose-body mt-3 !text-[15px]">Full-height built-ins at the entry, along the kitchen, and beside the bed. Designed in, they cost a fraction of buying furniture to solve the same problem, and they are the single reason a compact home stays livable rather than becoming cluttered.</p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Rule four</p>
+          <h3 class="mt-1 font-display text-xl text-forest-700">Every home touches the outside</h3>
+          <p class="prose-body mt-3 !text-[15px]">A balcony, a stoop, a deep sill, a window seat: a threshold where the home meets the courtyard. Look again at those renders and you will notice the view is always green and always shared. That is the neighborhood doing work the floor plan cannot.</p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Rule five</p>
+          <h3 class="mt-1 font-display text-xl text-forest-700">A few good details, repeated</h3>
+          <p class="prose-body mt-3 !text-[15px]">The same window, the same shelf, the same handle across many homes. Repetition is what pays for quality: get a detail right once, build it hundreds of times, and the good version costs about what the cheap version would have.</p>
+        </div>
+        <div class="rounded-md border border-stone-100 bg-white p-6">
+          <p class="eyebrow !text-[10px]">Rule six</p>
+          <h3 class="mt-1 font-display text-xl text-forest-700">Quiet, warm, and cheap to run</h3>
+          <p class="prose-body mt-3 !text-[15px]">Thick, well-sealed walls and quality windows do three jobs at once: they keep the street out, hold the heat in, and make the energy bill small. Comfort you can hear, and comfort you can measure, come from the same investment.</p>
+        </div>
+      </div>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <Figure src={stairLight} alt="A stairwell washed in daylight." cap="Even the shared stair gets daylight: rule one, applied where most buildings give up." aspect="aspect-[3/2]" widths={[700, 1376]} />
+        <Figure src={intBath} alt="A calm bathroom in warm stone and wood." cap="A small room made calm by materials rather than square footage." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} />
+      </div>
+
+      <p class="prose-body mt-8 max-w-3xl">How these homes get built this way at honest prices is the other half of the story: it lives further down this page and on <a href="/how-we-build">How We Build</a>.</p>
     </div>
   </section>
 
