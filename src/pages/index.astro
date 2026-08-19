@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SubNav from '../components/SubNav.astro';
+import EarlyNote from '../components/EarlyNote.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { Image } from 'astro:assets';
 
@@ -310,6 +311,7 @@ const description =
             neighborhood. If enough of you say the same place, we pay
             attention.
           </p>
+          <EarlyNote variant="compact" title="Early, and honest about it." body="We are in pre-development. Nothing is for sale or lease yet, and the plans will keep evolving. Joining the list is simply how you hear first, and how you get a say." cta={false} />
         </div>
         <div class="overflow-hidden rounded-md shadow-sm">
           <Image

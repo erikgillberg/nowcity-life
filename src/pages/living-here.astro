@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import SubNav from '../components/SubNav.astro';
 import SubFooter from '../components/SubFooter.astro';
+import EarlyNote from '../components/EarlyNote.astro';
 import { Image } from 'astro:assets';
 
 import hero from '../assets/pages/neighborhood-hero.jpg';
@@ -27,6 +28,7 @@ const description =
         <p class="eyebrow">Living Here</p>
         <h1 class="mt-4 font-display text-4xl leading-tight text-forest-700 md:text-5xl">A day here.</h1>
         <p class="lede mt-6">The easiest way to understand what we are building is to walk through one ordinary day in it. Concept renderings of our first neighborhood, now taking shape.</p>
+        <EarlyNote variant="compact" title="A day we are designing toward." body="These are concept renderings of a neighborhood in planning, not photographs of a finished place. First homes are years out, and the details will keep changing." cta={false} />
       </div>
     </div>
   </section>

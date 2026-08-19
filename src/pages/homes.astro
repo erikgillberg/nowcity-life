@@ -65,7 +65,8 @@ const fitFilters = [
         <p class="eyebrow">Homes</p>
         <h1 class="mt-4 font-display text-4xl leading-tight text-forest-700 md:text-5xl">Healthy, beautiful, attainable. Pick all three.</h1>
         <p class="lede mt-6">Healthy, light-filled homes at honest prices, designed with the people who plan to live in them. Here is where the designs stand today, and how to help shape them.</p>
-        <EarlyNote />
+        <EarlyNote title="Study options, not listings." body="Everything here is early and evolving: sizes are planning ranges, the home mix is still being decided, and we are not selling or leasing yet. Your input genuinely shapes which homes get designed further." />
+        <p class="prose-body mt-5 !text-[15px]"><a href="#attainable">Worried this looks expensive?</a> So are we, and we take that question seriously further down the page.</p>
       </div>
     </div>
   </section>
@@ -141,11 +142,7 @@ const fitFilters = [
 
       <div class="mt-8 grid gap-6 md:grid-cols-2">
         <Figure src={uvRooftop} alt="A shared rooftop room opening onto a planted terrace." cap="Shared spaces count too: the rooftop room and terrace. Concept render." aspect="aspect-[3/2]" widths={[500, 1000, 1536]} />
-        <div class="rounded-md border border-copper-400/40 bg-white p-6">
-          <p class="eyebrow !text-[10px]">Setting expectations</p>
-          <p class="mt-2 font-display text-xl text-forest-700">No rents or availability yet.</p>
-          <p class="prose-body mt-3 !text-sm">These are study options, not listings. Sizes are planning ranges, the mix is still being decided, and your answers genuinely shape which homes get designed further. <a href="#share-fit">Tell us what fits</a>.</p>
-        </div>
+        <EarlyNote variant="compact" title="No rents or availability yet." body="These are study options rather than listings. Sizes are planning ranges, the mix is still being decided, and the fastest way to influence it is to tell us what fits." cta={false} />
       </div>
     </div>
   </section>
@@ -264,7 +261,7 @@ const fitFilters = [
     </div>
   </section>
 
-  <section class="py-section bg-cream-50">
+  <section id="attainable" class="py-section bg-cream-50">
     <div class="container-wide">
       <div class="max-w-3xl">
         <p class="eyebrow">The Honest Part</p>
