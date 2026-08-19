@@ -1,0 +1,109 @@
+---
+// Faithful port of the Home Plans prototype ConceptPlanSvg (React) to Astro.
+import type { HomePlan, PlanRoom, RoomKind } from '../data/homePlans';
+
+interface Props { plan: HomePlan }
+const { plan } = Astro.props;
+
+const fillByKind: Record<RoomKind, string> = {
+  living: '#F2E9D2', shared: '#F2E9D2', sleeping: '#DEE8E4', kitchen: '#D9D2BA',
+  bath: '#D7E6E1', entry: '#E7E1D3', storage: '#CFC7AE', balcony: '#A6B8A4', flex: '#E7E1D3',
+};
+
+const xs = plan.rooms.map((r) => r.x);
+const ys = plan.rooms.map((r) => r.y);
+const maxX = Math.max(...plan.rooms.map((r) => r.x + r.width));
+const maxY = Math.max(...plan.rooms.map((r) => r.y + r.depth));
+const bounds = { x: Math.min(...xs), y: Math.min(...ys), width: maxX - Math.min(...xs), depth: maxY - Math.min(...ys) };
+const pad = 0.45;
+const vbW = bounds.width + pad * 2;
+const vbH = bounds.depth + pad * 2;
+
+type Fx =
+  | { t: 'rect'; x: number; y: number; w: number; h: number; rx: number; fill: string; sw: number }
+  | { t: 'line'; x1: number; y1: number; x2: number; y2: number; sw: number }
+  | { t: 'circle'; cx: number; cy: number; r: number; sw: number };
+
+function fixtures(r: PlanRoom): Fx[] {
+  const fill = '#FBFAF6';
+  if (r.kind === 'sleeping') {
+    const bedW = Math.min(1.65, r.width - 0.45);
+    const bedD = Math.min(1.25, r.depth - 0.5);
+    const x = r.x + 0.22; const y = r.y + 0.22;
+    return [
+      { t: 'rect', x, y, w: bedW, h: bedD, rx: 0.05, fill, sw: 0.035 },
+      { t: 'line', x1: x, y1: y + bedD * 0.45, x2: x + bedW, y2: y + bedD * 0.45, sw: 0.025 },
+    ];
+  }
+  if (r.kind === 'living' || r.kind === 'shared') {
+    return [
+      { t: 'rect', x: r.x + 0.28, y: r.y + 0.28, w: Math.min(1.9, r.width - 0.7), h: 0.52, rx: 0.06, fill, sw: 0.035 },
+      { t: 'rect', x: r.x + r.width - 1.35, y: r.y + r.depth - 0.86, w: 0.95, h: 0.55, rx: 0.06, fill, sw: 0.035 },
+    ];
+  }
+  if (r.kind === 'kitchen') {
+    return [
+      { t: 'rect', x: r.x + 0.2, y: r.y + 0.18, w: Math.max(0.8, r.width - 0.4), h: 0.42, rx: 0, fill: '#CFC7AE', sw: 0.035 },
+      { t: 'rect', x: r.x + r.width - 0.62, y: r.y + 0.27, w: 0.28, h: 0.22, rx: 0.03, fill, sw: 0.025 },
+    ];
+  }
+  if (r.kind === 'bath') {
+    return [
+      { t: 'circle', cx: r.x + 0.42, cy: r.y + 0.55, r: 0.16, sw: 0.03 },
+      { t: 'rect', x: r.x + r.width - 0.55, y: r.y + r.depth - 0.55, w: 0.35, h: 0.35, rx: 0, fill, sw: 0.03 },
+    ];
+  }
+  if (r.kind === 'flex') {
+    return [{ t: 'rect', x: r.x + 0.28, y: r.y + 0.28, w: 0.9, h: 0.5, rx: 0.04, fill, sw: 0.035 }];
+  }
+  return [];
+}
+
+function windows(r: PlanRoom) {
+  const inset = 0.28;
+  return (r.facade ?? []).map((side) => {
+    if (side === 'N') return { x1: r.x + inset, y1: r.y, x2: r.x + r.width - inset, y2: r.y };
+    if (side === 'S') return { x1: r.x + inset, y1: r.y + r.depth, x2: r.x + r.width - inset, y2: r.y + r.depth };
+    if (side === 'W') return { x1: r.x, y1: r.y + inset, x2: r.x, y2: r.y + r.depth - inset };
+    return { x1: r.x + r.width, y1: r.y + inset, x2: r.x + r.width, y2: r.y + r.depth - inset };
+  });
+}
+
+function label(r: PlanRoom) {
+  const labelWidth = Math.min(Math.max(r.label.length * 0.16 + 0.42, 0.78), Math.max(0.7, r.width - 0.22));
+  const labelHeight = 0.48;
+  const x = r.x + r.width * (r.labelX ?? 0.5);
+  const y = r.y + r.depth * (r.labelY ?? 0.5);
+  const safeX = Math.min(Math.max(x, r.x + labelWidth / 2 + 0.1), r.x + r.width - labelWidth / 2 - 0.1);
+  const safeY = Math.min(Math.max(y, r.y + labelHeight / 2 + 0.1), r.y + r.depth - labelHeight / 2 - 0.1);
+  return { x: safeX, y: safeY, w: labelWidth, h: labelHeight };
+}
+
+const rendered = plan.rooms.map((r) => ({
+  room: r, fill: fillByKind[r.kind], fx: fixtures(r), win: windows(r), lb: label(r),
+}));
+---
+<svg
+  class="h-auto w-full"
+  viewBox={`0 0 ${vbW} ${vbH}`}
+  role="img"
+  aria-label={`${plan.title} illustrative floor plan`}
+>
+  <rect x="0" y="0" width={vbW} height={vbH} fill="#FBFAF6" />
+  <g transform={`translate(${pad - bounds.x} ${pad - bounds.y})`}>
+    <rect x={bounds.x} y={bounds.y} width={bounds.width} height={bounds.depth} fill="#FBFAF6" stroke="#1F3A34" stroke-width={0.08} />
+    {rendered.map(({ room, fill, fx, win, lb }) => (
+      <g>
+        <rect x={room.x} y={room.y} width={room.width} height={room.depth} rx={0.03} fill={fill} stroke="#1F3A34" stroke-width={0.055} />
+        {win.map((w) => <line x1={w.x1} y1={w.y1} x2={w.x2} y2={w.y2} stroke="#88C3D2" stroke-width={0.08} />)}
+        {fx.map((f) =>
+          f.t === 'rect' ? <rect x={f.x} y={f.y} width={f.w} height={f.h} rx={f.rx} fill={f.fill} stroke="#1F3A34" stroke-width={f.sw} />
+          : f.t === 'line' ? <line x1={f.x1} y1={f.y1} x2={f.x2} y2={f.y2} stroke="#1F3A34" stroke-width={f.sw} />
+          : <circle cx={f.cx} cy={f.cy} r={f.r} fill="#FBFAF6" stroke="#1F3A34" stroke-width={f.sw} />
+        )}
+        <rect x={lb.x - lb.w / 2} y={lb.y - lb.h / 2} width={lb.w} height={lb.h} rx={0.05} fill={fill} opacity={0.96} />
+        <text x={lb.x} y={lb.y + 0.07} text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size={0.23} font-weight={700} fill="#1F3A34">{room.label}</text>
+      </g>
+    ))}
+  </g>
+</svg>
