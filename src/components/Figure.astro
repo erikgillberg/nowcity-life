@@ -9,7 +9,8 @@ const {
 } = Astro.props;
 ---
 <figure class="relative overflow-hidden rounded-md shadow-sm">
-  <Image src={src} alt={alt} widths={widths} sizes={sizes} class={`${aspect} h-auto w-full object-cover`} loading={eager ? 'eager' : 'lazy'} />
+  <Image
+          quality={68} src={src} alt={alt} widths={widths} sizes={sizes} class={`${aspect} h-auto w-full object-cover`} loading={eager ? 'eager' : 'lazy'} />
   {cap && (
     <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest-900/80 via-forest-900/35 to-transparent px-5 pb-4 pt-12 text-[13px] leading-snug tracking-wide text-cream-50">
       {cap}
