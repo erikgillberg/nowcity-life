@@ -12,23 +12,77 @@ const aboutItems = [
   ['/team', 'Team'],
 ];
 const aboutActive = aboutItems.some(([href]) => href === current);
+const linkBase = 'text-xs font-medium uppercase tracking-[0.14em] no-underline';
 ---
-<header class="border-b border-stone-100 bg-cream-50/80 backdrop-blur">
-  <div class="container-wide flex flex-wrap items-center justify-between gap-4 py-5">
+<header class="sticky top-0 z-50 border-b border-stone-100 bg-cream-50/90 backdrop-blur">
+  <div class="container-wide flex items-center justify-between gap-4 py-4">
     <a href="/" class="font-display text-lg font-semibold text-forest-700 no-underline">Now City <span class="text-copper-400">Neighborhoods</span></a>
-    <nav class="flex flex-wrap items-center gap-5">
+
+    <!-- desktop -->
+    <nav class="hidden items-center gap-5 lg:flex" aria-label="Main">
       {links.map(([href, label]) => (
-        <a href={href} class={`text-xs font-medium uppercase tracking-[0.14em] no-underline ${current === href ? 'text-forest-700' : 'text-stone-500 hover:text-copper-400'}`}>{label}</a>
+        <a href={href} class={`${linkBase} ${current === href ? 'text-forest-700' : 'text-stone-500 hover:text-copper-400'}`}>{label}</a>
       ))}
       <div class="group relative">
-        <a href="/about" class={`inline-flex items-center gap-1 text-xs font-medium uppercase tracking-[0.14em] no-underline ${aboutActive ? 'text-forest-700' : 'text-stone-500 hover:text-copper-400'}`}>About Us <span aria-hidden="true" class="text-[9px]">▾</span></a>
+        <a href="/about" class={`inline-flex items-center gap-1 ${linkBase} ${aboutActive ? 'text-forest-700' : 'text-stone-500 hover:text-copper-400'}`}>About Us <span aria-hidden="true" class="text-[9px]">▾</span></a>
         <div class="invisible absolute right-0 top-full z-40 min-w-[150px] rounded-md border border-stone-100 bg-white py-2 opacity-0 shadow-sm transition-all group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
           {aboutItems.map(([href, label]) => (
-            <a href={href} class={`block px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] no-underline ${current === href ? 'text-forest-700' : 'text-stone-500 hover:text-copper-400'}`}>{label}</a>
+            <a href={href} class={`block px-4 py-2 ${linkBase} ${current === href ? 'text-forest-700' : 'text-stone-500 hover:text-copper-400'}`}>{label}</a>
           ))}
         </div>
       </div>
       <a href="/#follow-along" class="btn-primary !py-2 !px-4 text-xs">Join the List</a>
     </nav>
+
+    <!-- mobile -->
+    <button
+      id="navToggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobileNav"
+      class="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md text-forest-700 lg:hidden"
+    >
+      <svg id="navIconOpen" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg id="navIconClose" class="hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
   </div>
+
+  <nav id="mobileNav" hidden aria-label="Main" class="border-t border-stone-100 bg-cream-50 lg:hidden">
+    <div class="container-wide flex flex-col py-2">
+      {links.map(([href, label]) => (
+        <a href={href} class={`border-b border-stone-100 py-4 ${linkBase} ${current === href ? 'text-forest-700' : 'text-stone-600'}`}>{label}</a>
+      ))}
+      {aboutItems.map(([href, label]) => (
+        <a href={href} class={`border-b border-stone-100 py-4 ${linkBase} ${current === href ? 'text-forest-700' : 'text-stone-600'}`}>{label}</a>
+      ))}
+      <a href="/#follow-along" class="btn-primary mt-4 mb-3 text-center text-xs">Join the List</a>
+    </div>
+  </nav>
 </header>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('navToggle');
+    var menu = document.getElementById('mobileNav');
+    var iOpen = document.getElementById('navIconOpen');
+    var iClose = document.getElementById('navIconClose');
+    if (!btn || !menu) return;
+    function setOpen(open) {
+      menu.hidden = !open;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      iOpen.classList.toggle('hidden', open);
+      iClose.classList.toggle('hidden', !open);
+    }
+    btn.addEventListener('click', function () {
+      setOpen(btn.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1024) setOpen(false);
+    });
+  })();
+</script>
